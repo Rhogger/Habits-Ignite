@@ -6,7 +6,7 @@
   &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   [Tecnologias](#tecnologias)
   &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  [Preview](#preview)
+  [Aprendizado](#aprendizado)
   &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   [Layout](#layout)
     &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
@@ -47,6 +47,17 @@ Esse projeto foi feito durante a NLW Setup da Rocketseat na trilha Ignite, em su
 - Prisma
 - SQL
 - Expo
+
+<br>
+<br>
+
+## 🧠 Aprendizado <a name = "aprendizado"></a>
+
+Tudo o que eu estou aprendendo durante esse projeto estou documentando aqui nestes aquivos:
+
+- [Server](./server/DOC.md)
+- [Web](./web/DOC.md)
+- [Mobile](./mobile/DOC.md)
 
 <br>
 <br>
