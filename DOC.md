@@ -818,6 +818,36 @@ npm i -g expo-cli
 
 <br>
 
+### Problemas
+
+<br>
+
+#### **Mal Carregamento**
+
+> As vezes o Expo não vai carregar 100% o projeto, como novas imagens, ícones ou até atualizações de códigos. Quando isso ocorrer, basta vc fechar o Expo Go no seu Smartphone, parar a execução no Expo CLI no Terminal, abrir novamente o Expo Go e executar novamente o projeto no Expo CLI.
+<br><br>
+> Se mesmo assim não resolver, execute esse comando que o Bundle será recarregado novamente, "limpando em memória":
+
+```
+  npx expo start --clear
+```
+
+<br>
+
+#### **Imagem de Splash não mantém proporção da tela**
+
+> Quando a imagem de Splash aparecer, mas não mantém as proporções da tela do dispositivo, assim deixando outro background abaixo da splash. Para isso, acesse o **```app.json```** na seção do **```expo```**, procure por **```"splash"```** e em **```"backgroundColor":```** você coloca o background da splash.
+
+```json
+  "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#09090A"
+    },
+```
+
+<br>
+
 <div align="center">
 
 ### Mais sobre [Expo](https://docs.expo.dev)...
