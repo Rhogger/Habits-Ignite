@@ -722,6 +722,12 @@ npm i -D taildwindcss postcss autoprefixer
 
 <br>
 
+### View e Text
+
+> A View funciona como se fosse uma **```div```** do HTML e o Text a tag **```p```**.
+<br><br>
+> A tag nativa do Android é a ViewGroup e a TextView, já no IOS são as UIView e UITextView.
+
 <div align="center">
 
 ### Mais sobre [React Native](https://reactnative.dev/docs/getting-started)...
@@ -732,7 +738,7 @@ npm i -D taildwindcss postcss autoprefixer
 
 <div align="center">
 
-## Expo
+## Ferramenta: Expo
 
 </div>
 
@@ -804,8 +810,11 @@ npm i -g expo-cli
 
 > Para executar, digite o comando:
 ```
-
+  npx expo start
 ```
+> Ele vai executar o comando e gerar um QR Code, que é aí onde o App Expo Go entra, você vai entrar nele e clicar em **```"Scan QR Code"```** e só apontar a câmera da tela e pronto, nossa aplicação já está rodando no Expo Go.
+<br><br>
+> O Expo CLI tem alguns comandos que gerou abaixo do QR Code, no caso para fazer o Reload da aplicação, basta clicar a tecla **```R```** do teclado.
 
 <br>
 
@@ -815,7 +824,9 @@ npm i -g expo-cli
 
 </div>
 
-<!-- # Aula pausada em 1:24:00 -->
+<br><hr><br>
+
+<!-- # Aula pausada em 1:33:00 -->
 
 <!-- Links úteis:
 - Async / await : https://www.alura.com.br/artigos/async-await-no-javascript-o-que-e-e-quando-usar?gclid=Cj0KCQiAw8OeBhCeARIsAGxWtUzlETfyVC2fz0onBK8HzW8ePrntJtBgFy6BmUdbbkoftP-BWmjjC1kaAvG7EALw_wcB -->
