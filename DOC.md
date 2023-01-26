@@ -628,5 +628,8 @@ export default App;
 <br><hr><br>
 
 ## 
-<!-- 
-# Aula pausada em 50:00 -->
+
+<!-- # Aula pausada em 50:00
+
+Links úteis:
+- Async / await : https://www.alura.com.br/artigos/async-await-no-javascript-o-que-e-e-quando-usar?gclid=Cj0KCQiAw8OeBhCeARIsAGxWtUzlETfyVC2fz0onBK8HzW8ePrntJtBgFy6BmUdbbkoftP-BWmjjC1kaAvG7EALw_wcB -->

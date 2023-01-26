@@ -22,7 +22,7 @@
 
 <div align="center">
 
-![Preview](assets/PC.png)
+![Preview](Cover.png)
 
 </div>
 
