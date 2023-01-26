@@ -627,7 +627,62 @@ export default App;
 
 <br><hr><br>
 
-## 
+## Tailwind CSS
+
+<br>
+
+### O que é?
+
+> Tailwind CSS é um framework CSS com classes predefinidas que você pode usar para construir e projetar páginas web diretamente na sua marcação. Ele permite que você escreva CSS em seu HTML na forma de classes pré-definidas.
+
+### Instalando a Dependência de Desenvolvimento:
+
+> Na pasta do Front-End, digite no terminal para insta:
+
+```
+npm i -D taildwindcss postcss autoprefixer
+```
+
+> O **```taildwindcss```** é a propria Dependência para utilizarmos o Taildwind CSS, **```postcss```** é uma ferramenta para automatizar tarefas no CSS e o **```autoprefixer```** é uma ferramenta que vai adicionar os prefixos de browser (motor de renderização) às classes.
+
+<br>
+
+### Iniciando o Tailwind
+
+> Digite o comando: 
+```
+  npx taildwindcss init -p
+```
+
+> Com isso, criará o arquivo **```tailwindcss.config.cjs```** e o parâmetro **```-p```** é para criar o arquivo **```postcss.config.cjs```** senão o vite não consegue rodar o Tailwind CSS.
+
+<br>
+
+### Configurando o Tailwind
+
+> Para o **```Tailwind CSS```** e o **```postcss```** funcionar corretamente, utilizamos as extensões:
+<br><br>
+> Name: Tailwind CSS IntelliSense
+<br>
+> Id: bradlc.vscode-tailwindcss
+<br>
+> VS Marketplace Link: https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss
+<br><br>
+> Name: PostCSS Language Support
+<br>
+> Id: csstools.postcss
+<br>
+> VS Marketplace Link: https://marketplace.visualstudio.com/items?itemName=csstools.postcss
+
+<br>
+
+> Após isso, crie uma pasta **```style```** dentro de **```src```** e depois cria o arquivo **```global.css```** e dentro dele você vai importar algumas configurações do Tailwind:
+
+```css
+  @tailwind base;
+  @tailwind utilities;
+  @tailwind components;
+```
 
 <!-- # Aula pausada em 50:00
 

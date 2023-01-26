@@ -54,11 +54,7 @@ Esse projeto foi feito durante a NLW Setup da Rocketseat na trilha Ignite, em su
 
 ## 🧠 Aprendizado <a name = "aprendizado"></a>
 
-Tudo o que eu estou aprendendo durante esse projeto estou documentando aqui nestes aquivos:
-
-- [Server](./server/DOC.md)
-- [Web](./web/DOC.md)
-- [Mobile](./mobile/DOC.md)
+Tudo o que eu estou aprendendo durante esse projeto estou documentando aqui no aquivo [DOC.md](DOC.md).
 
 <br>
 <br>
