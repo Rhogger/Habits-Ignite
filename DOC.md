@@ -818,6 +818,18 @@ npm i -g expo-cli
 
 <br>
 
+### Instalando Fontes
+
+> Para instalar fontes é bem simples, primeiro pare a execução da aplicação e abra o terminal e execute o comando de instalação da API do Google Fonts:
+
+```
+  npx expo install expo-font @expo-google-fonts/inter
+```
+
+> Onde **```expo-font```** é para lidar com o carregamento das fontes e **```@expo-google-fonts/inter```** é a própria fonte.
+
+<br>
+
 ### Problemas
 
 <br>
@@ -856,7 +868,7 @@ npm i -g expo-cli
 
 <br><hr><br>
 
-<!-- # Aula pausada em 1:33:00 -->
+<!-- # Aula pausada em 1:51:00 -->
 
 <!-- Links úteis:
 - Async / await : https://www.alura.com.br/artigos/async-await-no-javascript-o-que-e-e-quando-usar?gclid=Cj0KCQiAw8OeBhCeARIsAGxWtUzlETfyVC2fz0onBK8HzW8ePrntJtBgFy6BmUdbbkoftP-BWmjjC1kaAvG7EALw_wcB -->
