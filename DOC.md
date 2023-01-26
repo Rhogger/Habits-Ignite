@@ -684,7 +684,138 @@ npm i -D taildwindcss postcss autoprefixer
   @tailwind components;
 ```
 
-<!-- # Aula pausada em 50:00
+<div align="center">
 
-Links úteis:
+### Mais sobre [Tailwind CSS](https://v2.tailwindcss.com/docs)...
+
+</div>
+
+<br><hr><br>
+
+<div align="center">
+
+## Framework: React Native
+
+</div>
+
+<br>
+
+### O que é?
+
+> Baseado no React, o React Native possibilita a criação de aplicações móvel multiplataforma (Android e iOS) utilizando apenas Javascript. Porém, diferente de outros frameworks com esta mesma finalidade, todo o código desenvolvido com o React Native é convertido para linguagem nativa do sistema operacional, o que torna o app muito mais fluido.
+
+<br>
+
+### Características
+
+> - Acessar a interface e os recursos nativos do Android e iOS utilizando JavaScript;
+<br>
+> - O código produzido é semelhante ao React para Web;
+<br>
+> - Possui a base de conhecimento compartilhada entre o desenvolvimento mobile e front-end;
+<br>
+> - Todo código desenvolvido é convertido para a linguagem nativa do sistema operacional;
+<br>
+> - Com o React Native conseguimos desenvolver aplicações para Android e iOS utilizando um código único;
+<br>
+> - Por ser multiplataforma, podemos desenvolver aplicações com React Native utilizando qualquer sistema operacional (Windows, macOS ou Linux).
+
+<br>
+
+<div align="center">
+
+### Mais sobre [React Native](https://reactnative.dev/docs/getting-started)...
+
+</div>
+
+<br><hr><br>
+
+<div align="center">
+
+## Expo
+
+</div>
+
+<br>
+
+### O que é?
+
+> O Expo é uma ferramenta utilizada no desenvolvimento mobile com React Native que permite o fácil acesso às API’s nativas do dispositivo sem precisar instalar qualquer dependência ou alterar código nativo.
+
+<br>
+
+### Para que serve o expo?
+
+> Quando iniciamos no desenvolvimento mobile percebemos que o número de API’s e recursos nativos que podemos controlar através da nossa aplicação é gigante, e muitas vezes não nos recordamos de todas opções que temos disponíveis.
+<br><br>
+> O Expo, por sua vez, oferece grande parte desses recursos de forma nativa e integrada e, por exemplo, você tem acesso à recursos como câmera, microfone, player de música, entre outros, de forma muito simples utilizando essa ferramenta.
+<br><br>
+> Apesar de todos esses benefícios, o grande ponto do Expo para quem está iniciando é que para começar a desenvolver suas aplicações mobile com React Native você não precisará instalar a SDK do Android ou o XCode para Mac, isso porque o Expo possui um aplicativo móvel instalável pelas lojas do Android/iOS que contém todo código nativo necessário pelo React Native para iniciar sua aplicação e, dessa forma, a única alteração em código que você faz é em Javascript.
+<br><br>
+> O ponto destacado acima, tem dois lados. A vantagem é que nesse formato o desenvolvedor inicia muito rápido e em poucos minutos está criando sua aplicação, toda parte complicada foi abstraída. A desvantagem está em exatamente pular essas etapas pois desconhecendo todo processo de instalação da SDK do Android ou XCode para iOS vai te limitar MUITO futuramente para lidar com processos de atualização e build das aplicações.
+
+<br>
+
+### Quando utilizar?
+
+> Recomendado é que utilize o Expo apenas em duas situações:
+<br>
+> - Você está testando o React Native e quer entender como ele funciona;
+> - Você não tem interesse em publicar e manter aplicações mobile complexas (apenas criar apps simples).
+
+<br>
+
+## Instalando o Expo CLI
+
+> Para instalar o Expo CLI, execute o código:
+```
+npm i -g expo-cli
+```
+> OBS: Isso com o Node entre as versões 13 e 16.
+
+<br>
+
+### Instalando o Expo GO
+
+> Com a CLI instalada no seu computador, você consegue criar projetos Expo e executar o metro bundler para servir o seu código, mas para executar o app no seu celular (ou emulador) você precisa instalar o aplicativo Expo GO. Ele é o responsável por pegar o código que o metro bundler envia e exibir em tela o seu app React Native.
+<br><br>
+> Para instalá-lo no seu dispositivo físico, basta buscar nas lojas o aplicativo Expo Go:
+<br>
+> - Play Store
+> - Apple Store
+
+> Para instalá-lo no seu emulador, basta executar o comando expo start e escolher qual emulador você deseja executar. Caso o Expo GO não esteja instalado, ele irá solicitar a sua autourização para instalar a versão necessária. 
+
+<br>
+
+### Iniciando o Projeto com Expo
+
+> Para iniciar o nosso projeto com o Expo, digite o comando no console:
+```
+  npx create-expo-app mobile --template
+```
+> Esse comando cria a pasta **```mobile```**, instala todas as dependências necessárias, as pastas e configurações Node e JavaScript e o parâmetro **```--template```** ele te dá a liberdade de escolher o template do projeto que você quer e iremos escolher a **```Blank (TypeScript)```** que já deixa o projeto em branco e pronto para usar o TypeScript.
+<br><br>
+> Nisso, é criado os **```assets```** do projeto, como **```favicon```**, **```splash```**, **```icon```**, etc, as dependências na pasta **```node-modules```**, o **```.gitignore```** que são arquivos que o git deve ignorar durante o versionamento, o **```app.json```** que é informações e configurações da aplicação, o **```App.tsx```** que é a própria aplicação, o **```babel.config.js```** que é mais configurações da aplicação, o **```package-lock.json```** que tem o controle e versionamento das bibliotecas dentro do **```node_modules```**, o **```package.json```** que possui informações e configurações do projeto e também dependências do projeto e de desenvolvimento e por último o **```tsconfig.json```** que é onde fica a configuração do TypeScript.
+
+<br>
+
+### Executando a aplicação
+
+> Para executar, digite o comando:
+```
+
+```
+
+<br>
+
+<div align="center">
+
+### Mais sobre [Expo](https://docs.expo.dev)...
+
+</div>
+
+<!-- # Aula pausada em 1:24:00 -->
+
+<!-- Links úteis:
 - Async / await : https://www.alura.com.br/artigos/async-await-no-javascript-o-que-e-e-quando-usar?gclid=Cj0KCQiAw8OeBhCeARIsAGxWtUzlETfyVC2fz0onBK8HzW8ePrntJtBgFy6BmUdbbkoftP-BWmjjC1kaAvG7EALw_wcB -->
