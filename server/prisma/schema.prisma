@@ -1,0 +1,32 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+// Aqui fica aconfiguração do banco
+datasource db {
+  // Provider é o tipo que será o banco
+  provider = "sqlite"
+  // url é uma variável ambiente (arquivo .env) onde fica o caminho e nome do banco
+  url      = env("DATABASE_URL")
+}
+
+// Criando uma tabela com nome Habit
+model Habit {
+  // 1° - Criando uma coluna da tabela com nome "id"
+  // 2° - Definindo tipo String
+  // 3° - Estabelecendo ela como chave primária
+  // 4° - Estabelecendo um UUID (Identificador Único Universal) para essa chave
+  id         String   @id @default(uuid())
+  // 1° - Criando uma coluna da tabela com nome "title"
+  // 2° - Definindo tipo String
+  title      String
+  // 1° - Criando uma coluna da tabela com nome "created_at"
+  // 2° - Definindo tipo DateTime
+  created_at DateTime
+
+  // Renomeando a tabela para "habits"
+  @@map("habits")
+}

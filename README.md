@@ -42,6 +42,7 @@ Esse projeto foi feito durante a NLW Setup da Rocketseat na trilha Ignite, em su
 - Node.JS
 - TypeScript
 - Fastify
+- Vite
 - React JS
 - React Native
 - Prisma
