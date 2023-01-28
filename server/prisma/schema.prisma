@@ -5,6 +5,10 @@ generator client {
   provider = "prisma-client-js"
 }
 
+generator erd {
+  provider = "prisma-erd-generator"
+}
+
 // Aqui fica aconfiguração do banco
 datasource db {
   // Provider é o tipo que será o banco
@@ -27,6 +31,53 @@ model Habit {
   // 2° - Definindo tipo DateTime
   created_at DateTime
 
+  dayHabits DayHabit[]
+  weekDays  HabitWeekDays[]
+
   // Renomeando a tabela para "habits"
   @@map("habits")
+}
+
+// Essa tabela armazena quais os dias da semana os hábitos estarão disponíveis para serem concluídos.
+model HabitWeekDays {
+  id       String @id @default(uuid())
+  habit_id String
+  week_day Int
+
+  //Estabelece a relação
+  habit Habit @relation(fields: [habit_id], references: [id])
+
+  // Esse comando não permite o mesmo hábito estar disponível no mesmo dia da semana.
+  @@unique([habit_id, week_day])
+  @@map("habit_week_days")
+}
+
+// Tabela que irá guardar os dias, SOEMNTE quando completado algum hábito
+model Day {
+  id   String   @id @default(uuid())
+  date DateTime
+
+  // Estabelece a relação, esse comando é para o JavaScript em si
+  dayHabits DayHabit[]
+
+  // Esse comando diz que a coluna 'date' não pode ter nenhum dado com valor idêntico.
+  @@unique([date])
+  @@map("days")
+}
+
+// Tabela pivô, que vai guardar o relacionamento de 2 Tabelas de N pra N
+model DayHabit {
+  id String @id @default(uuid())
+
+  // Esses 2 dados são os 2 id's das tabelas relacionadas, as chaves estrangeiras
+  day_id   String
+  habit_id String
+
+  // O alias faz referencia a model e faz a relação dos campos com final "_id" ao id das tabelas
+  day   Day   @relation(fields: [day_id], references: [id])
+  habit Habit @relation(fields: [habit_id], references: [id])
+
+  // Esse comando não permite completar o mesmo hábito 2x no mesmo dia.
+  @@unique([day_id, habit_id])
+  @@map("day_habits")
 }
