@@ -45,7 +45,7 @@ model HabitWeekDays {
   week_day Int
 
   //Estabelece a relação
-  habit Habit @relation(fields: [habit_id], references: [id])
+  habit Habit @relation(fields: [habit_id], references: [id], onDelete: Cascade)
 
   // Esse comando não permite o mesmo hábito estar disponível no mesmo dia da semana.
   @@unique([habit_id, week_day])
@@ -74,8 +74,8 @@ model DayHabit {
   habit_id String
 
   // O alias faz referencia a model e faz a relação dos campos com final "_id" ao id das tabelas
-  day   Day   @relation(fields: [day_id], references: [id])
-  habit Habit @relation(fields: [habit_id], references: [id])
+  day   Day   @relation(fields: [day_id], references: [id], onDelete: Cascade)
+  habit Habit @relation(fields: [habit_id], references: [id], onDelete: Cascade)
 
   // Esse comando não permite completar o mesmo hábito 2x no mesmo dia.
   @@unique([day_id, habit_id])

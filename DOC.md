@@ -704,7 +704,7 @@ npx prisma init --datasource-provider SQLite
 
 > Para criar uma tabela no Prisma, basta ir no **```schema.prisma```** e adicionar os seguintes comandos: 
 
-```sql
+```prisma
 model Habit {
   id         String   @id @default(uuid())
   title      String

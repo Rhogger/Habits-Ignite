@@ -26,7 +26,7 @@
 
 > Voltando ao que importa, a relação entre tabelas, no **```schema.prisma```**, você vai criar um alias que referencia a uma model e depois usar o **```@relation()```** para criar essa relação.
 
-```sql
+```prisma
   day     Day    @relation()
   habit   Habit  @relation()
 ```
@@ -43,7 +43,7 @@
 
 > Para completar essa relação de forma automática, devemos salvar o código com **```Ctrl```** + **```S```** e o prisma faz isso pra gente:
 
-```sql
+```prisma
   day     Day    @relation(fields: [dayId], references: [id])
   habit   Habit  @relation(fields: [habitId], references: [id])
   dayId   String
@@ -52,7 +52,7 @@
 
 > Ele cria já as chaves estrangeiras abaixo, mas como não estamos montando o padrão de camelCase, podemos alterar os nomes das chaves:
 
-```sql
+```prisma
   --- Antes
   day     Day    @relation(fields: [dayId], references: [id])
   habit   Habit  @relation(fields: [habitId], references: [id])
@@ -71,7 +71,7 @@
 <!-- TODO: Não sei ainda o que esse comando faz. -->
 > O prisma também vai criar um comando nas outras tabelas para concluir essas relações:
 
-```sql
+```prisma
   dayHabits DayHabit[]
 ```
 
@@ -114,3 +114,241 @@
 </div>
 
 <br><hr><br>
+
+### Fazendo o Seeding no nosso banco
+
+> Seeding nada mais é que colocar dados no banco a fim de testes. Para fazer isso, criamos um arquivo com nome **```seed.ts```**, configuramos nosso **```package.json```** com as seguintes instruções:
+
+```json
+  "prisma": {
+    "seed": "tsx prisma/seed.ts"
+  }
+```
+
+> Onde **```"seed"```** é o nome do comando que iremos executar para fazer o seeding, **```tsx```** é a lib que usaremos pra estar executando e **```prisma/seed.ts```** é a pasta/nome do arquivo.
+
+<br>
+
+<!-- TODO: Fazer exemplo de seed -->
+> Para montar um seeding, temos aqui a estrutura base dele: 
+
+> Agora no console, vamos fazer o seeding:
+
+```
+  npx prisma db seed
+```
+
+<div align="center">
+
+### Mais Sobre [Prisma Seeding DataBase](https://www.prisma.io/docs/guides/database/seed-database)...
+
+</div>
+
+<br><hr><br>
+
+### Problemas
+
+<div align="center">
+
+#### **Exclusão de tabelas**
+
+</div>
+
+<br>
+
+> Quando vamos excluir os dados de tabelas, precisamos excluir todos os dados de tabelas relacionadas primeiro para depois as tabelas raíz. Para corrigir isso, vamos adicionar um pequeno parâmetro nas **```@relation```**:
+
+```prisma
+  habit Habit @relation(fields: [habit_id], references: [id], onDelete: Cascade)
+```
+
+> O parâmetro adicionado é esse **```onDelete: Cascade```**, com ele precisamos apenas deletar os dados da tabela raíz que o banco deleta automaticamente os dados das tabelas relacionadas.
+
+<br><hr><br>
+
+<div align="center">
+
+## TypeScript
+
+</div>
+
+<br>
+
+### Importações necessárias (server)
+
+```ts
+  // Importação para utilizar recursos do Fastify
+  import Fastify from "fastify";
+  import cors from "@fastify/cors"
+  // Importação das rotas
+  import { appRoutes } from "./routes";
+```
+
+<br>
+
+### Criar uma aplicação (função) (server)
+
+```ts
+  // Cria a aplicação executando a função Fastify()
+  const app = Fastify()
+```
+
+<br>
+
+### Integrando a aplicação ao Front-End (server)
+
+```ts
+  // Cria a integração com o Front-End
+  app.register(cors)
+  // Posso configurar para apenas alguns endereços poderem consumir os dados do Back-End, bastamos utilizar o "origin: 'http://endereço/rota'"
+```
+
+<br>
+
+### Integrando a aplicação às rotas (server)
+
+```ts
+  // Cria a integração com rotas
+  app.register(appRoutes) 
+```
+
+<br>
+
+### Conectando a aplicação à uma porta local (server)
+
+```ts
+  // Faz com que nossa aplicação se conecte através da porta passada por parâmetro (3333)
+  // O .then() faz com que execute aquela mensagem enquanto o servidor está sendo executado.
+  app.listen({
+    port: 3333,
+  }).then(() => {
+    console.log('HTTP Server Running');
+  })
+```
+
+<br>
+
+### Importações necessárias (routes)
+
+```ts
+  import { FastifyInstance } from "fastify"
+  import { prisma } from "./lib/prisma"
+  // Importação dentro do Prisma o Client
+  import { PrismaClient } from '@prisma/client'
+```
+
+<br>
+
+### Criando uma rota e acessando dados de dentro do banco (routes)
+
+> Para criar um rota, fiz da seguinte maneira:
+
+```ts
+  // Cria uma rota, localizada no http://localhost:3333/ onde:
+  // 1° parâmetro é a rota, que no caso não é destinado a nenhum lugar (padrão)
+  // 2° parâmetro é a função que irá rodar nessa rota
+  app.post('/habits', async () => {
+    // Dentro dessa rota consigo acessar o banco, na tabela habits e procurar por alguns dados 
+    // A cada parâmetro passado na função eu teclar Ctrl + Space, a linguagem da uma sugestão do que podemos usar como parâmetro.
+    const habits = await prisma.habit.findMany({
+      // Se eu aperto Ctrl + Space aqui, consigo ver as operações que consigo fazer dentro do banco na tabela habits
+
+      // Aqui estou buscando na tabela habits, a coluna title que começa com 'Beber'
+      where: {
+        title: {
+          startsWith: 'Beber'
+        }
+      }
+
+      // Se eu quiser que essa função retorne todos os dados, basta retirar a consulta com o where (comentei).
+    })
+
+    // Essa função irá retornar uma promise (no JS), se eu quiser aguardar a busca dos dados ser finalizada antes de retornar os dados pro Front End, precisa usar o await na promessa que temos que esperar a sua finalização, e para usar o await, é necessário deixar a função assíncrona com o async
+    return habits
+    // O bom do prisma é que ele já valida os dados antes mesmo de fazer a migração e acontecer qualquer erro, ele valida se estamos utilizando operações válidas com dados válidos.
+  })
+```
+
+<br><br><br>
+
+<div align="center">
+
+## Biblioteca: zod
+
+</div>
+
+<br>
+
+### O que é?
+
+> Zod é uma biblioteca de declaração e validação de TypeScript-first schema. O termo "schema" refere-se amplamente a qualquer tipo de dados, desde uma string a um objeto complexo aninhado.
+<br><br>
+> Projetado para ser o mais amigável possível ao desenvolvedor, o objetivodo zod é eliminar declarações de tipo duplicadas. Você declara um validador uma vez e Zod inferirá automaticamente o tipo estático do TypeScript. É fácil compor tipos mais simples em estruturas de dados complexas.
+
+<br>
+
+### Características
+
+> Alguns grandes aspectos:
+<br><br>
+> - Zero dependências
+<br>
+> - Funciona em Node.js e em todos os navegadores modernos
+<br>
+> - Pequeno: 8kb minificado + compactado
+<br>
+> - Imutável: métodos (por exemplo, .optional()) retornam uma nova instância
+<br>
+> - Interface concisa e encadeável
+<br>
+> - Abordagem funcional: analise, não valide
+<br>
+> - Funciona com JavaScript simples também! Você não precisa usar somente TypeScript.
+
+<br>
+
+### Instalação
+
+> Para instalar, siga o comando:
+
+```
+  npm i zod
+```
+
+<br>
+
+### Importação
+
+```ts
+  import { z } from 'zod'
+```
+
+<br>
+
+### Exemplos usados na aplicação
+
+```ts
+// Para fazer a propriedade ser obrigatória, definimos apenas o tipo
+      title: z.string(),
+
+      // Para criar a propriedade do tipo array que armazene números pre-definidos, definimos o tipo array para ela e definimos um mínimo com a função .min() e um máximo com a .max()
+      weekDays: z.array(
+        z.number().min(0).max(6)
+      )
+      //Para ela não ser obrigatória, poderíamos adicionar a função .nullable()
+      // title: z.string().nullable()
+```
+
+<br><hr><br>
+
+<div align="center">
+
+## Biblioteca: DayJs
+
+</div>
+
+<br>
+
+## Pesquisar sobre:
+
+- FastifyInstance
