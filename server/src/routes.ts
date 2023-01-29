@@ -80,8 +80,28 @@ export async function appRoutes(app: FastifyInstance) {
       }
     })
 
+    // Buscar informações do dia
+    const day = await prisma.day.findUnique({
+      where: {
+        date: parsedDate.toDate(),
+      },
+      include: {
+        dayHabits: true,
+      }
+    })
+
+    // Varável que recebe o dia em que o hábito foi completado, caso não existir (null) (? verifica se é nulo), ele retorna os id's dos hábitos que foram completados na model dayHabits
+    const completedHabits = day?.dayHabits.map(dayHabit => {
+      return dayHabit.habit_id
+    })
+
     return {
       possibleHabits,
+      completedHabits,
     }
   })
 }
+
+// Rota para completar e reverter ação
+
+// Rota que retorna todos os hábitos em tabela
