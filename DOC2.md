@@ -349,6 +349,38 @@
 
 <br>
 
+### O que é?
+
+> Day.js é uma biblioteca JavaScript minimalista que analisa, valida, manipula e exibe datas e horas para navegadores modernos com uma API amplamente compatível com Moment.js. Se você usa Moment.js, já sabe como usar Day.js.
+
+<br>
+
+### Características
+
+> - Leve: Menos JavaScript para baixar, analisar e executar, deixando mais tempo para o seu código.
+<br>
+> - Imutável: Todas as operações de API que alteram o objeto Day.js retornarão uma nova instância. Isso ajuda a prevenir bugs e evitar longas sessões de depuração.
+<br>
+> - I18n: O Day.js tem um ótimo suporte para internacionalização. Mas nenhum deles será incluído em sua compilação, a menos que você os use.
+
+<br>
+
+### Instalação
+
+```
+  npm i dayjs
+```
+
+<br>
+
+### Importação
+
+```ts
+  import dayjs from 'dayjs'
+```
+
+<br>
+
 ## Pesquisar sobre:
 
 - FastifyInstance

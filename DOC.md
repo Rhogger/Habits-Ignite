@@ -970,6 +970,7 @@ npm i -g expo-cli
 <br><hr><br>
 
 <!-- # Aula 1 Finalizada com 975 linhas de DOC -->
+# Aula 2 Pausada em 54:20
 
 <!-- Links úteis:
 - Async / await : https://www.alura.com.br/artigos/async-await-no-javascript-o-que-e-e-quando-usar?gclid=Cj0KCQiAw8OeBhCeARIsAGxWtUzlETfyVC2fz0onBK8HzW8ePrntJtBgFy6BmUdbbkoftP-BWmjjC1kaAvG7EALw_wcB -->

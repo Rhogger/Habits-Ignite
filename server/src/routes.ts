@@ -1,3 +1,4 @@
+import dayjs from 'dayjs'
 import { FastifyInstance } from "fastify"
 import { z } from 'zod'
 import { prisma } from "./lib/prisma"
@@ -26,11 +27,16 @@ export async function appRoutes(app: FastifyInstance) {
     const { title, weekDays } = createHabitBody.parse(request.body)
     //Zod agora irá validar os dados dessa requisição
 
+    // Criando a data do hoje
+    // .startOf() zera as horas, minutos e segundos
+    // .toDate() retorna um tipo date do próprio JS
+    const today = dayjs().startOf('day').toDate()
+
     // Criar um novo hábito
     await prisma.habit.create({
       data: {
         title,
-        created_at: new Date(),
+        created_at: today,
         weekDays: {
           // Percorre os dias da semana, e para cada dia da semana vou retornar um objeto com as informações que quero inserir
           create: weekDays.map(weekDay => {
@@ -41,5 +47,41 @@ export async function appRoutes(app: FastifyInstance) {
         }
       }
     })
+  })
+
+  // Rota para buscar um dia específico
+  app.get('/day', async (request) => {
+    // Faz com que os parâmetros sejam do tipo date, porém convertido para String
+    const getDayParams = z.object({
+      date: z.coerce.date()
+    })
+
+    // Recebe os parâmetros da rota (localhost:3333/day?date=2023-01-29T00)
+    const { date } = getDayParams.parse(request.query)
+    // FIXME: Requisição nao retorna nada se o horário não for diferente de 00:00:00:000z
+    const parsedDate = dayjs(date).startOf('day')
+
+    // Recebe o dia da semana em Int
+    const weekDay = parsedDate.get('day')
+
+    // Buscar todos os hábitos possíveis no dia selecionado
+    const possibleHabits = await prisma.habit.findMany({
+      where: {
+        // Buscar uma data de criação que seja menor ou igual
+        created_at: {
+          lte: date,
+        },
+        // Buscar hábitos onde tenha algum dia da semana que preenche os requisitos 
+        weekDays: {
+          some: {
+            week_day: weekDay,
+          }
+        }
+      }
+    })
+
+    return {
+      possibleHabits,
+    }
   })
 }

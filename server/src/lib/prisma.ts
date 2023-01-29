@@ -4,7 +4,10 @@
 import { PrismaClient } from '@prisma/client'
 
 // Estabelece a conexão com o banco de dados
-export const prisma = new PrismaClient()
+export const prisma = new PrismaClient({
+  // Mostrar todas as queries que são feitas no banco
+  log: ['query']
+})
 // Nossa aplicação seguirá as proprias convenções do HTTP
 // Métodos HTTP:
 // - Get : Trazer informações
