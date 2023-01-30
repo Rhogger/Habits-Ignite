@@ -1,13 +1,13 @@
 // Esse arquivo foi criado para separar as configurações do prisma do server.ts
 
 // Importação dentro do Prisma o Client
-import { PrismaClient } from '@prisma/client'
+import { PrismaClient } from "@prisma/client";
 
 // Estabelece a conexão com o banco de dados
 export const prisma = new PrismaClient({
   // Mostrar todas as queries que são feitas no banco
-  log: ['query']
-})
+  log: ["query"],
+});
 // Nossa aplicação seguirá as proprias convenções do HTTP
 // Métodos HTTP:
 // - Get : Trazer informações

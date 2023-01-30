@@ -2,15 +2,15 @@
 
 <div align="center">
 
-  [Projeto](#projeto) 
-  &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  [Tecnologias](#tecnologias)
-  &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  [Aprendizado](#aprendizado)
-  &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  [Layout](#layout)
-    &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  [Licença](#license)
+[Projeto](#projeto)
+&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+[Tecnologias](#tecnologias)
+&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+[Aprendizado](#aprendizado)
+&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+[Layout](#layout)
+&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+[Licença](#license)
 
 </div>
 
@@ -61,7 +61,7 @@ Tudo o que eu estou aprendendo durante esse projeto estou documentando aqui no a
 
 ## 🔖 Layout <a name = "layout"></a>
 
-Você pode visualizar o layout do projeto através [DESSE LINK](https://www.figma.com/file/ArxVYcX7q7OUgCwdfBV6b7/Habits-(i)-(Community)?node-id=6%3A343&t=4ZHKCi0ZbniE75iY-1). É necessário ter conta no [Figma](https://figma.com) para acessá-lo.
+Você pode visualizar o layout do projeto através [DESSE LINK](<https://www.figma.com/file/ArxVYcX7q7OUgCwdfBV6b7/Habits-(i)-(Community)?node-id=6%3A343&t=4ZHKCi0ZbniE75iY-1>). É necessário ter conta no [Figma](https://figma.com) para acessá-lo.
 
 <br>
 <br>
