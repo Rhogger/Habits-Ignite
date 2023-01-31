@@ -475,7 +475,157 @@ import {} from 'phosphor-react'
 
 </div>
 
+<br><hr><br>
+
+<div align="center">
+
+## NativeWind
+
+</div>
+
 <br>
+
+### O que é?
+
+> NativeWind usa Tailwind CSS como linguagem de script para criar um sistema de estilo universal
+> para React Native. Os componentes NativeWind podem ser compartilhados entre plataformas e
+> produzirão seus estilos como CSS StyleSheet na web e StyleSheet.create para nativos.
+
+<br>
+
+### Características
+
+> Seus objetivos são fornecer uma experiência de estilo consistente em todas as plataformas,
+> melhorar a UX do desenvolvedor e a capacidade de manutenção do código. <br><br> NativeWind
+> consegue isso pré-compilando seus estilos e usa um tempo de execução mínimo para aplicar
+> seletivamente estilos responsivos.
+
+<br>
+
+### Instalação
+
+```
+  npm i nativewind --save -dev
+```
+
+<br>
+
+### Inicialização
+
+```
+npx tailwindcss init
+```
+
+<br>
+
+### Configuração
+
+> No arquivo **`tailwind.config.js`**, você irá adicionar algumas linhas de código:
+
+```js
+// Original
+module.exports = {
+  content: [],
+
+// Modificado
+module.exports = {
+  content: [
+    "./App.{js,jsx,ts,tsx}",
+    "./src/**/*.{js,jsx,ts,tsx}"
+  ],
+```
+
+<br>
+
+> Agora no **`babel.config.js`**:
+
+```js
+// Original
+module.exports = function (api) {
+	api.cache(true)
+	return {
+		presets: ['babel-preset-expo'],
+	}
+}
+
+// Modificado
+module.exports = function (api) {
+	api.cache(true)
+	return {
+		presets: ['babel-preset-expo'],
+		plugins: ['nativewind/babel'],
+	}
+}
+```
+
+### Importação
+
+```tsx
+
+```
+
+<br>
+
+### Tipagem
+
+> Para utilizarmos o **`className`** no React Native, devemos fazer uma tipagem primeiro. Então crie
+> uma pasta **`@types`** no **`src`** e depois um arquivo **`app.d.ts`** nela. Após isso adicione os
+> seguintes comandos nesse arquivo:
+
+```ts
+/// <reference types="nativewind/types" />
+```
+
+> Com isso, agora podemos utilizar algumas propriedades nos componentes.
+
+<br>
+
+### Usar SVG no React Native
+
+> Vamos instalar a biblioteca **`react-native-svg`**, que fornece suporte SVG para React Native no
+> iOS, Android, macOS, Windows e uma camada de compatibilidade para a web:
+
+```
+npx expo install react-native-svg
+```
+
+> E importao para o projeto:
+
+```tsx
+import * as Svg from 'react-native-svg'
+```
+
+> Também vamos instalar outra biblioteca, a **`react-native-svg-transformer`**, vamos instalar como
+> dependência de desenvolvimento:
+
+```
+npm i react-native-svg-transformer --save-dev
+```
+
+> Criar um arquivo na raíz do projeto (mobile) e nomear com **`metro.config.js`** e adicionar o
+> seguinte trecho de código nesse arquivo:
+
+```js
+const { getDefaultConfig } = require('expo/metro-config')
+
+module.exports = (() => {
+	const config = getDefaultConfig(__dirname)
+
+	const { transformer, resolver } = config
+
+	config.transformer = {
+		...transformer,
+		babelTransformerPath: require.resolve('react-native-svg-transformer'),
+	}
+	config.resolver = {
+		...resolver,
+		assetExts: resolver.assetExts.filter((ext) => ext !== 'svg'),
+		sourceExts: [...resolver.sourceExts, 'svg'],
+	}
+
+	return config
+})()
+```
 
 <br><hr><br>
 
