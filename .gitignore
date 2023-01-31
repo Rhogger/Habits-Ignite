@@ -3,4 +3,4 @@
 **/migrations
 server/.env
 **/.prettierrc.json
-DOC2.md
+./DOC2.md

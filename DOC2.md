@@ -463,8 +463,19 @@ module.exports = {
 ### Importação
 
 ```tsx
-
+// Importando QUALQUER ícone da lib Phosphor Icon, só teclar Ctrl + Space
+import {} from 'phosphor-react'
 ```
+
+<br>
+
+<div align="center">
+
+### Mais Sobre [Phosphor Icon](https://github.com/phosphor-icons/react)...
+
+</div>
+
+<br>
 
 <br><hr><br>
 
