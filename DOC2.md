@@ -674,6 +674,29 @@ import {} from '@expo/vector-icons'
 > Onde **`name`** é o nome do ícone que você consegue buscar entre as várias bibliotecas de ícones
 > nesse [**`site`**](https://oblador.github.io/react-native-vector-icons/).
 
+<br><hr><br>
+
+<div align="center">
+
+## DayJs
+
+</div>
+
+<br>
+
+### Configurar Modelo de Data para pt-br
+
+> Crie uma pasta lib, para melhor organizar os arquivos, nela crie um arquivo com nome
+> **`dayjs.ts`** e cole o seguinte código:
+
+```ts
+import dayjs from 'dayjs'
+import 'dayjs/locale/pt-br'
+
+// COnfigurando a data para pt-br
+dayjs.locale('pt-br')
+```
+
 <br>
 
 ## Pesquisar sobre:

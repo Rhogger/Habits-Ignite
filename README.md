@@ -65,8 +65,9 @@ desenvolvemos um website que faz o controle de hábitos.
 - Expo
 - NativeWind
 - Vector Icons
-- react-native-svg
-- react-native-svg-transformer
+- React Native SVG
+- React Native SVG Transformer
+- DayJs
 
 <br>
 <br>
