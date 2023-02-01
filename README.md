@@ -2,14 +2,9 @@
 
 <div align="center">
 
-[Projeto](#projeto)
-&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-[Tecnologias](#tecnologias)
-&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-[Aprendizado](#aprendizado)
-&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-[Layout](#layout)
-&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+[Projeto](#projeto) &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; [Tecnologias](#tecnologias)
+&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; [Aprendizado](#aprendizado)
+&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; [Layout](#layout) &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
 [Licença](#license)
 
 </div>
@@ -32,36 +27,63 @@
 
 ## 💻 Projeto <a name = "projeto"></a>
 
-Esse projeto foi feito durante a NLW Setup da Rocketseat na trilha Ignite, em sua 11° edição, onde desenvolvemos um website que faz o controle de hábitos.
+Esse projeto foi feito durante a NLW Setup da Rocketseat na trilha Ignite, em sua 11° edição, onde
+desenvolvemos um website que faz o controle de hábitos.
 
 <br>
 <br>
 
 ## 🚀 Tecnologias <a name = "tecnologias"></a>
 
+### &nbsp;&nbsp;&nbsp;&nbsp; Back-End
+
 - Node.JS
 - TypeScript
 - Fastify
-- Vite
-- React JS
-- React Native
 - Prisma
-- SQL
+- SQLite
+- Zod
+- DayJs
+
+<br>
+
+### &nbsp;&nbsp;&nbsp;&nbsp; Front-End
+
+- Vite
+- TypeScript
+- React JS
+- DayJs
+- Tailwind CSS
+- Phosphor Icon
+
+<br>
+
+### &nbsp;&nbsp;&nbsp;&nbsp; Mobile
+
+- TypeScript
+- React Native
 - Expo
+- NativeWind
+- Vector Icons
+- react-native-svg
+- react-native-svg-transformer
 
 <br>
 <br>
 
 ## 🧠 Aprendizado <a name = "aprendizado"></a>
 
-Tudo o que eu estou aprendendo durante esse projeto estou documentando aqui no aquivo [DOC.md](DOC.md).
+Tudo o que eu estou aprendendo durante esse projeto estou documentando aqui no aquivo
+[DOC.md](DOC.md).
 
 <br>
 <br>
 
 ## 🔖 Layout <a name = "layout"></a>
 
-Você pode visualizar o layout do projeto através [DESSE LINK](<https://www.figma.com/file/ArxVYcX7q7OUgCwdfBV6b7/Habits-(i)-(Community)?node-id=6%3A343&t=4ZHKCi0ZbniE75iY-1>). É necessário ter conta no [Figma](https://figma.com) para acessá-lo.
+Você pode visualizar o layout do projeto através
+[DESSE LINK](<https://www.figma.com/file/ArxVYcX7q7OUgCwdfBV6b7/Habits-(i)-(Community)?node-id=6%3A343&t=4ZHKCi0ZbniE75iY-1>).
+É necessário ter conta no [Figma](https://figma.com) para acessá-lo.
 
 <br>
 <br>

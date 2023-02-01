@@ -627,7 +627,54 @@ module.exports = (() => {
 })()
 ```
 
+> Depois só importar o logo pro projeto:
+
+```tsx
+import Logo from '../assets/logo.svg'
+```
+
 <br><hr><br>
+
+<div align="center">
+
+## Biblioteca: Vector-Icons
+
+</div>
+
+<br>
+
+### O que é?
+
+> Essa biblioteca é instalada por padrão ao criar o projeto no expo. Ele é construído sobre
+> react-native-vector-icons e usa uma API semelhante. Inclui conjuntos de ícones populares que você
+> pode navegar em **`icons.expo.fyi`**.
+
+<br>
+
+### Importação
+
+```tsx
+import {} from '@expo/vector-icons'
+```
+
+> Nas **`{}`** você pode usar algumas bibliotecas de ícones, como por exemplo: Feather, FontAwesome,
+> Ionicons, entre outras.
+
+<br>
+
+### Como usar
+
+> E depois para usar algum ícone da biblioteca de ícones, você precisa usar o componente
+> (biblioteca) que você importou:
+
+```tsx
+<Feather name="plus" color="white" size={20} />
+```
+
+> Onde **`name`** é o nome do ícone que você consegue buscar entre as várias bibliotecas de ícones
+> nesse [**`site`**](https://oblador.github.io/react-native-vector-icons/).
+
+<br>
 
 ## Pesquisar sobre:
 
