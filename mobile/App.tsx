@@ -1,3 +1,6 @@
+// Config do DayJs
+import './src/lib/dayjs'
+
 // Importando algumas APIs e Components que o React Native irá usar na aplicação
 import { StatusBar } from 'react-native'
 // Importando as fontes da API

@@ -697,6 +697,13 @@ import 'dayjs/locale/pt-br'
 dayjs.locale('pt-br')
 ```
 
+> E depois importe pro **`App.tsx`**:
+
+```tsx
+// Config do DayJs
+import './src/lib/dayjs'
+```
+
 <br>
 
 ## Pesquisar sobre:
