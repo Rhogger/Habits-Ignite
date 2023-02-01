@@ -16,7 +16,15 @@ Abaixo, os tópicos da documentação:
 <br>
 
 - [Iniciar Projeto em Node](#projeto_node)
+- [Sobre o Front-End da aplicação](#sobre_front)
+  - [Importações necessárias (routes)](#routes_importacao)
+  - [Criando uma rota e acessando dados de dentro do banco (routes)](#routes_criar_rotas_acessar_no_banco)
 - [Sobre o Back-End da aplicação](#sobre_backend)
+  - [Importações necessárias](#server_importações)
+  - [Criar uma aplicação](#server_aplicacao)
+  - [Conectando a aplicação à uma porta local](#server_conectar_aplicacao_a_porta)
+  - [Integrando a aplicação às rotas](#server_integrando_as_rotas)
+  - [Integrando a aplicação ao Front-End](#server_integrando_ao_front)
 - [Superconjunto](#superconjunto)
   - [TypeScript](#typescript)
     - [O que é?](#typescript_sobre)
@@ -42,6 +50,7 @@ Abaixo, os tópicos da documentação:
     - [Instalação das Dependências de Desenvolvimento](#tailwind_instalacao_dependencias_desenvolvimento)
     - [Iniciando o Tailwind](#tailwind_iniciando)
     - [Configuração](#tailwind_config)
+    - [Criar uma classe que não está no Tailwind por padrão](#tailwind_criar_classe)
 - [Bibliotecas](#libs)
   - [React JS](#react)
     - [O que é?](#react_sobre)
@@ -49,14 +58,53 @@ Abaixo, os tópicos da documentação:
     - [Componentes (Components)](#react_componentes)
     - [Propriedades (Props)](#react_propriedades)
     - [Estado (State)](#react_estado)
+  - [Zod](#zod)
+    - [O que é?](#zod_sobre)
+    - [Características](#zod_caracteristicas)
+    - [Instalação](#zod_instalacao)
+    - [Importação](#zod_importacao)
+    - [Exemplos usados na aplicação](#zod_exemplos)
+  - [DayJs](#dayjs)
+    - [O que é?](#dayjs_sobre)
+    - [Características](#dayjs_caracteristicas)
+    - [Instalação](#dayjs_instalacao)
+    - [Importação](#dayjs_importacao)
+    - [Configurar Modelo de Data para pt-br](#dayjs_config_modelo_data_pt)
+  - [Phosphor Icon](#phosphor)
+    - [O que é?](#phosphor_sobre)
+    - [Instalação](#phosphor_instalacao)
+    - [Importação](#phosphor_importacao)
+    - [Como usar?](#phosphor_como_usar)
+  - [NativeWind](#nativewind)
+    - [O que é?](#nativewind_sobre)
+    - [Características](#nativewind_caracteristicas)
+    - [Instalação](#nativewind_instalacao)
+    - [Inicialização](#nativewind_inicializacao)
+    - [Configuração](#nativewind_configuracao)
+    - [Tipagem](#nativewind_tipagem)
+    - [Usar SVG no React Native](#nativewind_usar_svg)
+  - [Vector-Icons](#vector)
+    - [O que é?](#vector_sobre)
+    - [Importação](#vector_importacao)
+    - [Como usar?](#vector_como_usar)
+  - [](#)
+    - [](#)
+    - [](#)
+    - [](#)
+    - [](#)
+    - [](#)
 - [Object-Relational Mapping (ORM)](#orm)
   - [Prisma](#prisma)
     - [O que é?](#prisma_sobre)
-    - [Principais Ferramentas](#prisma_ferramentas)
+    - [Principais ferramentas](#prisma_ferramentas)
     - [Instalação](#prisma_instalacao)
     - [Criando uma tabela](#prisma_criando_tabela)
+    - [Criar relação entre tabelas](#prisma_relação_entre_tabelas)
     - [Executando o Prisma](#prisma_executando)
-    - [Visualizar o Banco](#prisma_visualizar_banco)
+    - [Fazendo o Seeding no banco](#prisma_seeding)
+    - [Visualizar o banco](#prisma_visualizar_banco)
+    - [Visualizar o diagrama do banco de dados](#prisma_visualizar_diagrama)
+    - [Problemas](#prisma_problemas)
 - [Mecanismos](#mecanismos)
   - [Cors](#cors)
     - [O que é?](#cors_sobre)
@@ -69,9 +117,9 @@ Abaixo, os tópicos da documentação:
     - [Quando utilizar?](#expo_utilizacao)
     - [Instalando o Expo CLI](#expo_cli)
     - [Instalando o Expo GO](#expo_go)
-    - [Iniciando o Projeto com Expo](#expo_iniciando_projeto)
+    - [Iniciando o projeto com Expo](#expo_iniciando_projeto)
     - [Executando a aplicação](#expo_executando_aplicacao)
-    - [Instalando Fontes](#expo_instalando_fontes)
+    - [Instalando fontes](#expo_instalando_fontes)
     - [Problemas](#expo_problemas)
 
 <br><hr><br>
@@ -98,6 +146,57 @@ Abaixo, os tópicos da documentação:
 
 <div align="center">
 
+## Sobre o Front-End da aplicação <a name = "sobre_front"></a>
+
+</div>
+
+<br>
+
+### Importações necessárias (routes) <a name = "routes_importacao"></a>
+
+```ts
+import { FastifyInstance } from 'fastify'
+import { prisma } from './lib/prisma'
+// Importação dentro do Prisma o Client
+import { PrismaClient } from '@prisma/client'
+```
+
+<br>
+
+### Criando uma rota e acessando dados de dentro do banco (routes) <a name = "routes_criar_rotas_acessar_no_banco"></a>
+
+> Para criar um rota, fiz da seguinte maneira:
+
+```ts
+// Cria uma rota, localizada no http://localhost:3333/ onde:
+// 1° parâmetro é a rota, que no caso não é destinado a nenhum lugar (padrão)
+// 2° parâmetro é a função que irá rodar nessa rota
+app.post('/habits', async () => {
+	// Dentro dessa rota consigo acessar o banco, na tabela habits e procurar por alguns dados
+	// A cada parâmetro passado na função eu teclar Ctrl + Space, a linguagem da uma sugestão do que podemos usar como parâmetro.
+	const habits = await prisma.habit.findMany({
+		// Se eu aperto Ctrl + Space aqui, consigo ver as operações que consigo fazer dentro do banco na tabela habits
+
+		// Aqui estou buscando na tabela habits, a coluna title que começa com 'Beber'
+		where: {
+			title: {
+				startsWith: 'Beber',
+			},
+		},
+
+		// Se eu quiser que essa função retorne todos os dados, basta retirar a consulta com o where (comentei).
+	})
+
+	// Essa função irá retornar uma promise (no JS), se eu quiser aguardar a busca dos dados ser finalizada antes de retornar os dados pro Front End, precisa usar o await na promessa que temos que esperar a sua finalização, e para usar o await, é necessário deixar a função assíncrona com o async
+	return habits
+	// O bom do prisma é que ele já valida os dados antes mesmo de fazer a migração e acontecer qualquer erro, ele valida se estamos utilizando operações válidas com dados válidos.
+})
+```
+
+<br><hr><br>
+
+<div align="center">
+
 ## Sobre o Back-End da aplicação <a name = "sobre_backend"></a>
 
 </div>
@@ -108,6 +207,62 @@ Abaixo, os tópicos da documentação:
 > seja, uma API que provê recursos, acessos à entidades, funcionalidades (criação, edição, remoção,
 > etc) através de rotas HTTP. <br><br> Ele terá algumas rotas, que são recursos que o Front-End vai
 > acessar dentro da aplicação.
+
+<br>
+
+### Importações necessárias (server) <a name = "server_importações"></a>
+
+```ts
+// Importação para utilizar recursos do Fastify
+import Fastify from 'fastify'
+import cors from '@fastify/cors'
+// Importação das rotas
+import { appRoutes } from './routes'
+```
+
+<br>
+
+### Criar uma aplicação (função) (server) <a name = "server_aplicacao"></a>
+
+```ts
+// Cria a aplicação executando a função Fastify()
+const app = Fastify()
+```
+
+<br>
+
+### Conectando a aplicação à uma porta local (server) <a name = "server_conectar_aplicacao_a_porta"></a>
+
+```ts
+// Faz com que nossa aplicação se conecte através da porta passada por parâmetro (3333)
+// O .then() faz com que execute aquela mensagem enquanto o servidor está sendo executado.
+app
+	.listen({
+		port: 3333,
+	})
+	.then(() => {
+		console.log('HTTP Server Running')
+	})
+```
+
+<br>
+
+### Integrando a aplicação às rotas (server) <a name = "server_integrando_as_rotas"></a>
+
+```ts
+// Cria a integração com rotas
+app.register(appRoutes)
+```
+
+<br>
+
+### Integrando a aplicação ao Front-End (server) <a name = "server_integrando_ao_front"></a>
+
+```ts
+// Cria a integração com o Front-End
+app.register(cors)
+// Posso configurar para apenas alguns endereços poderem consumir os dados do Back-End, bastamos utilizar o "origin: 'http://endereço/rota'"
+```
 
 <br><hr><br>
 
@@ -260,17 +415,13 @@ const varName: varType = valor
 
 > Para sair do modo Watch, basta clicar **`Ctrl`** + **`C`**.
 
-<br>
-
 <div align="center">
-
-### Mais sobre [TypeScript](https://www.typescriptlang.org/docs/)...
-
-</div>
 
 <br><hr><br>
 
-<div align="center">
+### Mais sobre [TypeScript](https://www.typescriptlang.org/docs/)...
+
+<br><hr><br><br>
 
 ## Frameworks<a name = "frameworks"></a>
 
@@ -324,13 +475,11 @@ const varName: varType = valor
 
 <div align="center">
 
-### Mais sobre [Fastify](https://github.com/fastify/docs-portuguese)...
-
-</div>
-
 <br><hr><br>
 
-<div align="center">
+### Mais sobre [Fastify](https://github.com/fastify/docs-portuguese)...
+
+<br><hr><br><br>
 
 ## Vite JS <a name = "vite"></a>
 
@@ -409,17 +558,13 @@ const varName: varType = valor
 
 > O console irá te entregar um link local para acessar, basta segurar Ctrl e clicar no link.
 
-<br>
-
 <div align="center">
-
-### Mais sobre [Vite](https://vitejs.dev)...
-
-</div>
 
 <br><hr><br>
 
-<div align="center">
+### Mais sobre [Vite](https://vitejs.dev)...
+
+<br><hr><br><br>
 
 ## React Native <a name = "react_native"></a>
 
@@ -456,13 +601,15 @@ const varName: varType = valor
 
 <div align="center">
 
-### Mais sobre [React Native](https://reactnative.dev/docs/getting-started)...
-
-</div>
-
 <br><hr><br>
 
+### Mais sobre [React Native](https://reactnative.dev/docs/getting-started)...
+
+<br><hr><br><br>
+
 ## Tailwind CSS <a name = "tailwind"></a>
+
+</div>
 
 <br>
 
@@ -520,11 +667,49 @@ npm i -D taildwindcss postcss autoprefixer
 @tailwind components;
 ```
 
+<br>
+
+### Criar uma classe que não está no Tailwind por padrão <a name = "tailwind_criar_classe"></a>
+
+> Acesse o arquivo **`tailwind.config.cjs`**, na parte
+> **`module.exports > content > theme > extends`**:
+
+```cjs
+module.exports = {
+	content: [
+		// Dentro da pasta 'src', qualquer pasta que tenha qualquer arquivo com a extensão .tsx
+		'./src/**/*.tsx',
+		'./index.html',
+		// Esses 2 caminhos é para dizer onde poderei utilizar o tailwind
+	],
+	theme: {
+		extend: {},
+	},
+	plugins: [],
+}
+```
+
+> Em extends, tecle **`Ctrl`** + **`Space`** para abrir o painel de sugestões e procure pela
+> propriedade CSS que você quer criar a classe, no meu caso foi uma cor (objeto) e nela eu criei um
+> alias (background) com um conteúdo:
+
+```cjs
+  theme: {
+		extend: {
+      colors: {
+        background: '#09090A'
+      }
+    },
+	},
+```
+
 <div align="center">
+
+<br><hr><br>
 
 ### Mais sobre [Tailwind CSS](https://v2.tailwindcss.com/docs)...
 
-<br><hr><br>
+<br><hr><br><br>
 
 ## Bibliotecas <a name = "libs"></a>
 
@@ -671,17 +856,396 @@ export default App
 > um objeto, um array, um número. A diferença, no caso do state, é que ao invés de receber a
 > informação e somente utilizá-la, o state é privado e completamente controlado pelo componente.
 
-<br>
-
 <div align="center">
+
+<br><hr><br>
 
 ### Mais sobre [Componentes, Props e State](https://felipegalvao.com.br/pt/blog/learn-react-components-state-and-props/)...
 
-<br>
+<br><hr><br>
 
 ### Mais sobre [React](https://reactjs.org)...
 
+<br><hr><br><br>
+
+## Zod <a name = "zod"></a>
+
+</div>
+
+<br>
+
+### O que é? <a name = "zod_sobre"></a>
+
+> Zod é uma biblioteca de declaração e validação de TypeScript-first schema. O termo "schema"
+> refere-se amplamente a qualquer tipo de dados, desde uma string a um objeto complexo aninhado.
+> <br><br> Projetado para ser o mais amigável possível ao desenvolvedor, o objetivodo zod é eliminar
+> declarações de tipo duplicadas. Você declara um validador uma vez e Zod inferirá automaticamente o
+> tipo estático do TypeScript. É fácil compor tipos mais simples em estruturas de dados complexas.
+
+<br>
+
+### Características <a name = "zod_caracteristicas"></a>
+
+> Alguns grandes aspectos: <br><br>
+>
+> - Zero dependências <br>
+> - Funciona em Node.js e em todos os navegadores modernos <br>
+> - Pequeno: 8kb minificado + compactado <br>
+> - Imutável: métodos (por exemplo, .optional()) retornam uma nova instância <br>
+> - Interface concisa e encadeável <br>
+> - Abordagem funcional: analise, não valide <br>
+> - Funciona com JavaScript simples também! Você não precisa usar somente TypeScript.
+
+<br>
+
+### Instalação <a name = "zod_instalacao"></a>
+
+> Para instalar, siga o comando:
+
+```
+  npm i zod
+```
+
+<br>
+
+### Importação <a name = "zod_importacao"></a>
+
+```ts
+import { z } from 'zod'
+```
+
+<br>
+
+### Exemplos usados na aplicação <a name = "zod_exemplos"></a>
+
+```ts
+    // Para fazer a propriedade ser obrigatória, definimos apenas o tipo
+      title: z.string(),
+
+      // Para criar a propriedade do tipo array que armazene números pre-definidos, definimos o tipo array para ela e definimos um mínimo com a função .min() e um máximo com a .max()
+      weekDays: z.array(
+        z.number().min(0).max(6)
+      )
+      //Para ela não ser obrigatória, poderíamos adicionar a função .nullable()
+      // title: z.string().nullable()
+```
+
 <br><hr><br>
+
+<div align="center">
+
+## DayJs <a name = "dayjs"></a>
+
+</div>
+
+<br>
+
+### O que é? <a name = "dayjs_sobre"></a>
+
+> Day.js é uma biblioteca JavaScript minimalista que analisa, valida, manipula e exibe datas e horas
+> para navegadores modernos com uma API amplamente compatível com Moment.js. Se você usa Moment.js,
+> já sabe como usar Day.js.
+
+<br>
+
+### Características <a name = "dayjs_caracteristicas"></a>
+
+> - Leve: Menos JavaScript para baixar, analisar e executar, deixando mais tempo para o seu código.
+>   <br>
+> - Imutável: Todas as operações de API que alteram o objeto Day.js retornarão uma nova instância.
+>   Isso ajuda a prevenir bugs e evitar longas sessões de depuração. <br>
+> - I18n: O Day.js tem um ótimo suporte para internacionalização. Mas nenhum deles será incluído em
+>   sua compilação, a menos que você os use.
+
+<br>
+
+### Instalação <a name = "dayjs_instalacao"></a>
+
+```
+  npm i dayjs
+```
+
+<br>
+
+### Importação <a name = "dayjs_importacao"></a>
+
+```ts
+import dayjs from 'dayjs'
+```
+
+<br>
+
+### Configurar Modelo de Data para pt-br <a name = "dayjs_config_modelo_data_pt-br"></a>
+
+> Crie uma pasta lib, para melhor organizar os arquivos, nela crie um arquivo com nome
+> **`dayjs.ts`** e cole o seguinte código:
+
+```ts
+import dayjs from 'dayjs'
+import 'dayjs/locale/pt-br'
+
+// COnfigurando a data para pt-br
+dayjs.locale('pt-br')
+```
+
+> E depois importe pro **`App.tsx`**:
+
+```tsx
+// Config do DayJs
+import './src/lib/dayjs'
+```
+
+<br>
+
+<br><hr><br>
+
+<div align="center">
+
+## Phosphor Icon <a name = "phosphor"></a>
+
+</div>
+
+<br>
+
+### O que é? <a name = "phosphor_sobre"></a>
+
+> Phosphor é uma biblioteca de ícones flexíveis para interfaces, diagramas, apresentações, o que
+> quiser que seja.
+
+<br>
+
+### Instalação <a name = "phosphor_instalacao"></a>
+
+```
+  npm i phosphor-react
+```
+
+<br>
+
+### Importação <a name = "phosphor_importacao"></a>
+
+```tsx
+// Importando QUALQUER ícone da lib Phosphor Icon, só teclar Ctrl + Space
+import {} from 'phosphor-react'
+```
+
+<br>
+
+### Como usar? <a name = "phosphor_como_usar"></a>
+
+> Escolha o ícone na importação da lib:
+
+```tsx
+// Escolhi o ícone Plus
+import { Plus } from 'phosphor-react'
+```
+
+> Depois é só usá-lo como componente:
+
+```tsx
+<Plus size={20} className="text-violet-500" />
+```
+
+<div align="center">
+
+<br><hr><br>
+
+### Mais Sobre [Phosphor Icon](https://github.com/phosphor-icons/react)...
+
+<br><hr><br><br>
+
+## NativeWind <a name = "nativewind"></a>
+
+</div>
+
+<br>
+
+### O que é? <a name = "nativewind_sobre"></a>
+
+> NativeWind usa Tailwind CSS como linguagem de script para criar um sistema de estilo universal
+> para React Native. Os componentes NativeWind podem ser compartilhados entre plataformas e
+> produzirão seus estilos como CSS StyleSheet na web e StyleSheet.create para nativos.
+
+<br>
+
+### Características <a name = "nativewind_caracteristicas"></a>
+
+> Seus objetivos são fornecer uma experiência de estilo consistente em todas as plataformas,
+> melhorar a UX do desenvolvedor e a capacidade de manutenção do código. <br><br> NativeWind
+> consegue isso pré-compilando seus estilos e usa um tempo de execução mínimo para aplicar
+> seletivamente estilos responsivos.
+
+<br>
+
+### Instalação <a name = "nativewind_instalacao"></a>
+
+```
+  npm i nativewind --save -dev
+```
+
+<br>
+
+### Inicialização <a name = "nativewind_inicializacao"></a>
+
+```
+npx tailwindcss init
+```
+
+<br>
+
+### Configuração <a name = "nativewind_configuracao"></a>
+
+> No arquivo **`tailwind.config.js`**, você irá adicionar algumas linhas de código:
+
+```js
+// Original
+module.exports = {
+  content: [],
+
+// Modificado
+module.exports = {
+  content: [
+    "./App.{js,jsx,ts,tsx}",
+    "./src/**/*.{js,jsx,ts,tsx}"
+  ],
+```
+
+<br>
+
+> Agora no **`babel.config.js`**:
+
+```js
+// Original
+module.exports = function (api) {
+	api.cache(true)
+	return {
+		presets: ['babel-preset-expo'],
+	}
+}
+
+// Modificado
+module.exports = function (api) {
+	api.cache(true)
+	return {
+		presets: ['babel-preset-expo'],
+		plugins: ['nativewind/babel'],
+	}
+}
+```
+
+<br>
+
+### Tipagem <a name = "nativewind_tipagem"></a>
+
+> Para utilizarmos o **`className`** no React Native, devemos fazer uma tipagem primeiro. Então crie
+> uma pasta **`@types`** no **`src`** e depois um arquivo **`app.d.ts`** nela. Após isso adicione os
+> seguintes comandos nesse arquivo:
+
+```ts
+/// <reference types="nativewind/types" />
+```
+
+> Com isso, agora podemos utilizar algumas propriedades nos componentes.
+
+<br>
+
+### Usar SVG no React Native <a name = "nativewind_usar_svg"></a>
+
+> Vamos instalar a biblioteca **`react-native-svg`**, que fornece suporte SVG para React Native no
+> iOS, Android, macOS, Windows e uma camada de compatibilidade para a web:
+
+```
+npx expo install react-native-svg
+```
+
+> E importao para o projeto:
+
+```tsx
+import * as Svg from 'react-native-svg'
+```
+
+> Também vamos instalar outra biblioteca, a **`react-native-svg-transformer`**, vamos instalar como
+> dependência de desenvolvimento:
+
+```
+npm i react-native-svg-transformer --save-dev
+```
+
+> Criar um arquivo na raíz do projeto (mobile) e nomear com **`metro.config.js`** e adicionar o
+> seguinte trecho de código nesse arquivo:
+
+```js
+const { getDefaultConfig } = require('expo/metro-config')
+
+module.exports = (() => {
+	const config = getDefaultConfig(__dirname)
+
+	const { transformer, resolver } = config
+
+	config.transformer = {
+		...transformer,
+		babelTransformerPath: require.resolve('react-native-svg-transformer'),
+	}
+	config.resolver = {
+		...resolver,
+		assetExts: resolver.assetExts.filter((ext) => ext !== 'svg'),
+		sourceExts: [...resolver.sourceExts, 'svg'],
+	}
+
+	return config
+})()
+```
+
+> Depois só importar o logo pro projeto:
+
+```tsx
+import Logo from '../assets/logo.svg'
+```
+
+<br><hr><br>
+
+<div align="center">
+
+## Vector-Icons <a name = "vector"></a>
+
+</div>
+
+<br>
+
+### O que é? <a name = "vector_sobre"></a>
+
+> Essa biblioteca é instalada por padrão ao criar o projeto no expo. Ele é construído sobre
+> react-native-vector-icons e usa uma API semelhante. Inclui conjuntos de ícones populares que você
+> pode navegar em **`icons.expo.fyi`**.
+
+<br>
+
+### Importação <a name = "vector_importacao"></a>
+
+```tsx
+import {} from '@expo/vector-icons'
+```
+
+> Nas **`{}`** você pode usar algumas bibliotecas de ícones, como por exemplo: Feather, FontAwesome,
+> Ionicons, entre outras.
+
+<br>
+
+### Como usar? <a name = "vector_como_usar"></a>
+
+> E depois para usar algum ícone da biblioteca de ícones, você precisa usar o componente
+> (biblioteca) que você importou:
+
+```tsx
+<Feather name="plus" color="white" size={20} />
+```
+
+> Onde **`name`** é o nome do ícone que você consegue buscar entre as várias bibliotecas de ícones
+> nesse [**`site`**](https://oblador.github.io/react-native-vector-icons/).
+
+<br><hr><br>
+
+<div align="center">
 
 ## Object-Relational Mapping (ORM) <a name = "orm"></a>
 
@@ -776,6 +1340,85 @@ model Habit {
 
 <br>
 
+### Criar relação entre tabelas <a name = "prisma_relação_entre_tabelas"></a>
+
+> Para criar uma relação entre tabelas, precisamos antes fazer uma configuração opcional no
+> **`settings.json`**. Primeiro acesse o arquivo e procure pelas configurações do prisma:
+
+```json
+  // Original
+  "[prisma]": {
+    "editor.defaultFormatter": "Prisma.prisma",
+    "editor.formatOnSave": false
+  }
+
+  // Modificado
+  "[prisma]": {
+      "editor.defaultFormatter": "Prisma.prisma",
+      "editor.formatOnSave": true
+    }
+```
+
+> Aí a cada vez que você salvar o código, o VSCode formata o código automaticamente o código feito
+> em prisma.
+
+<br>
+
+> Voltando ao que importa, a relação entre tabelas, no **`schema.prisma`**, você vai criar um alias
+> que referencia a uma model e depois usar o **`@relation()`** para criar essa relação.
+
+```prisma
+  day     Day    @relation()
+  habit   Habit  @relation()
+```
+
+> Onde:
+>
+> - 'day' e 'habit' são os alias, <br>
+> - 'Day' e 'Habit' são as Models (Tabelas) <br>
+> - @relation() são as relações (incompletas)
+
+<br>
+
+> Para completar essa relação de forma automática, devemos salvar o código com **`Ctrl`** + **`S`**
+> e o prisma faz isso pra gente:
+
+```prisma
+  day     Day    @relation(fields: [dayId], references: [id])
+  habit   Habit  @relation(fields: [habitId], references: [id])
+  dayId   String
+  habitId String
+```
+
+> Ele cria já as chaves estrangeiras abaixo, mas como não estamos montando o padrão de camelCase,
+> podemos alterar os nomes das chaves:
+
+```prisma
+  --- Antes
+  day     Day    @relation(fields: [dayId], references: [id])
+  habit   Habit  @relation(fields: [habitId], references: [id])
+  dayId   String
+  habitId String
+
+
+  --- Depois
+  day_id   String
+  habit_id String
+
+  day     Day    @relation(fields: [day_id], references: [id])
+  habit   Habit  @relation(fields: [habit_id], references: [id])
+```
+
+<!-- TODO: Não sei ainda o que esse comando faz. -->
+
+> O prisma também vai criar um comando nas outras tabelas para concluir essas relações:
+
+```prisma
+  dayHabits DayHabit[]
+```
+
+<br>
+
 ### Executando o Prisma <a name = "prisma_executando"></a>
 
 > Para executar o **`schema.prisma`**, ou seja, fazer a portabilidade do código feito em prisma para
@@ -808,6 +1451,59 @@ CREATE TABLE "habits" (
 
 <br>
 
+### Fazendo o Seeding no banco <a name = "prisma_seeding"></a>
+
+> Seeding nada mais é que colocar dados no banco a fim de testes. Para fazer isso, criamos um
+> arquivo com nome **`seed.ts`**, configuramos nosso **`package.json`** com as seguintes instruções:
+
+```json
+  "prisma": {
+    "seed": "tsx prisma/seed.ts"
+  }
+```
+
+> Onde **`"seed"`** é o nome do comando que iremos executar para fazer o seeding, **`tsx`** é a lib
+> que usaremos pra estar executando e **`prisma/seed.ts`** é a pasta/nome do arquivo.
+
+<br>
+
+<!-- TODO: Fazer exemplo de seed -->
+
+> Para montar um seeding, temos aqui a estrutura base dele:
+
+```ts
+import { PrismaClient } from '@prisma/client'
+const prisma = new PrismaClient()
+
+async function main() {}
+
+main()
+	.then(async () => {
+		await prisma.$disconnect()
+	})
+	.catch(async (e) => {
+		console.error(e)
+		await prisma.$disconnect()
+		process.exit(1)
+	})
+```
+
+> Depois de criarmos nosso próprio Seed, vamos fazer o seeding no banco:
+
+```
+  npx prisma db seed
+```
+
+<div align="center">
+
+<br><hr><br>
+
+### Mais Sobre [Prisma Seeding DataBase](https://www.prisma.io/docs/guides/database/seed-database)...
+
+<br><hr><br>
+
+</div>
+
 ### Visualizar o Banco <a name = "prisma_visualizar_banco"></a>
 
 > Para visualizar o banco, basta executar o seguinte código no terminal:
@@ -820,11 +1516,69 @@ CREATE TABLE "habits" (
 
 <br>
 
+### Visualizar o diagrama do banco de dados <a name = "prisma_visualizar_diagrama"></a>
+
+> Para visualizar o banco de dados pelo navegador, iremos usar o Prisma ERD Generator. <br><br>
+> Vamos instalar as Dependências, que são os geradores de diagrama, primeiro:
+
+```
+  npm i -D prisma-erd-generator @mermaid-js/mermaid-cli
+```
+
+> Após isso, já no **`schema.prisma`**, vamos adicionar um trecho de código:
+
+```prisma
+  generator erd {
+    provider = "prisma-erd-generator"
+  }
+```
+
+> Depois, já no console, vamos dar o seguinte comando:
+
+```
+  npx prisma generate
+```
+
+> Ele vai instalar primeiro a Engine do Prisma e depois gera um SVG na pasta do prisma e podemos
+> abrir ele no navegador e visualizar ele por lá através da opção "Open with Live Server". <br><br>
+> Dá para aplicar também, temas.
+
+<br>
+
 <div align="center">
+
+<br><hr><br>
+
+### Mais Sobre [Prisma ERD Generator](https://www.npmjs.com/package/prisma-erd-generator)...
+
+<br><hr><br>
+
+### Problemas <a name = "prisma_problemas"></a>
+
+<div align="center">
+
+#### **Exclusão de tabelas**
+
+</div>
+
+<br>
+
+> Quando vamos excluir os dados de tabelas, precisamos excluir todos os dados de tabelas
+> relacionadas primeiro para depois as tabelas raíz. Para corrigir isso, vamos adicionar um pequeno
+> parâmetro nas **`@relation`**:
+
+```prisma
+  habit Habit @relation(fields: [habit_id], references: [id], onDelete: Cascade)
+```
+
+> O parâmetro adicionado é esse **`onDelete: Cascade`**, com ele precisamos apenas deletar os dados
+> da tabela raíz que o banco deleta automaticamente os dados das tabelas relacionadas.
+
+<br><hr><br>
 
 ### Mais sobre [Prisma](https://www.prisma.io/docs)...
 
-<br><hr><br>
+<br><hr><br><br>
 
 ## Mecanismos <a name = "mecanismos"></a>
 
@@ -878,9 +1632,11 @@ app.register(cors)
 
 <div align="center">
 
+<br><hr><br>
+
 ### Mais sobre [Cors](https://developer.mozilla.org/pt-BR/docs/Web/HTTP/CORS)...
 
-<br><hr><br>
+<br><hr><br><br>
 
 ## Ferramentas <a name = "ferramentas"></a>
 
@@ -1056,19 +1812,22 @@ npm i -g expo-cli
     },
 ```
 
-<br>
-
 <div align="center">
-
-### Mais sobre [Expo](https://docs.expo.dev)...
-
-</div>
 
 <br><hr><br>
 
-<!-- # Aula 1 Finalizada com 975 linhas de DOC -->
+### Mais sobre [Expo](https://docs.expo.dev)...
 
-# Aula 2 Pausada em 54:20
+<br><hr><br><br>
+
+</div>
+
+<!-- Aula 1 Finalizada com 975 linhas de DOC -->
+<!-- Aula 2 Finalizada com 1834 linhas de DOC -->
+
+<!-- ## Pesquisar sobre:
+
+- FastifyInstance -->
 
 <!-- Links úteis:
 - Async / await : https://www.alura.com.br/artigos/async-await-no-javascript-o-que-e-e-quando-usar?gclid=Cj0KCQiAw8OeBhCeARIsAGxWtUzlETfyVC2fz0onBK8HzW8ePrntJtBgFy6BmUdbbkoftP-BWmjjC1kaAvG7EALw_wcB -->
