@@ -303,45 +303,45 @@ const varName: varType = valor
 ```
 
 ```ts
-  const valor: number = 5;
+const valor: number = 5
 
-  // Erro, a função só pode retornar um number e essa função retornaria uma String
-  function soma(): number {
-    return valor + '5';
-  }
+// Erro, a função só pode retornar um number e essa função retornaria uma String
+function soma(): number {
+	return valor + '5'
+}
 
-  // Retorna '55'
-  function concat(): String {
-    return valor + '5';
-  }
+// Retorna '55'
+function concat(): String {
+	return valor + '5'
+}
 
-  // Crio um tipo estático de um objeto
-  type User {
-    name: String,
-    age: Int,
-  }
+// Crio um tipo estático de um objeto
+type User = {
+	name: String
+	age: number
+}
 
-  // Crio uma função colocando uma tipagem nela (User)
-  function showUserName(user : User) {
-    return user.name
-  }
+// Crio uma função colocando uma tipagem nela (User)
+function showUserName(user: User) {
+	return user.name
+}
 
-  // Crio um objeto com name e age
-  const user1 = {
-    name: 'Rhogger',
-    age: 20,
-  }
+// Crio um objeto com name e age
+const user1 = {
+	name: 'Rhogger',
+	age: 20,
+}
 
-  // retorna 'Rhogger'
-  showUserName(user1)
+// retorna 'Rhogger'
+showUserName(user1)
 
-  // Crio um objeto somente com age
-  const user 2 = {
-    age: 25
-  }
+// Crio um objeto somente com age
+const user2 = {
+	age: 25,
+}
 
-  // Erro, pois esse objeto não é identico a tipagem User
-  showUserName(user2)
+// Erro, pois esse objeto não é identico a tipagem User
+showUserName(user2)
 ```
 
 <br>

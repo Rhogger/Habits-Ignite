@@ -97,8 +97,64 @@ export async function appRoutes(app: FastifyInstance) {
 			completedHabits,
 		}
 	})
-}
 
-// Rota para completar e reverter ação
+	// Rota para completar hábito e reverter ação
+	// Esse :id da rota, é um "route param", que é um parâmetro de identificação
+	// Por exemplo, se eu for buscar na tabela o 4° HábitDay, o endereço ficará assim: localhost:3333/habits/4/toggle
+	app.patch('/habits/:id/toggle', async (request) => {
+		// Aqui há a validação do parâmetro, no caso o ID e para o formato que é o ID no banco, UUID
+		const toggleHabitParams = z.object({
+			id: z.string().uuid(),
+		})
+
+		const { id } = toggleHabitParams.parse(request.params)
+
+		// Recebe a data de hoje com horas e minutos zerado
+		const today = dayjs().startOf('day').toDate()
+
+		// Buscar a data de hoje entre a tabela de datas
+		let day = await prisma.day.findUnique({
+			where: {
+				date: today,
+			},
+		})
+
+		// Se essa data não existir, eu crio ela
+		if (!day) {
+			day = await prisma.day.create({
+				data: {
+					date: today,
+				},
+			})
+		}
+
+		const dayHabit = await prisma.dayHabit.findUnique({
+			where: {
+				day_id_habit_id: {
+					day_id: day.id,
+					habit_id: id,
+				},
+			},
+		})
+
+		// Se esse registro existe no banco e está completado
+		if (dayHabit) {
+			// Reverto a ação de marcação (Desmarcar como completo)
+			await prisma.dayHabit.delete({
+				where: {
+					id: dayHabit.id,
+				},
+			})
+		} else {
+			// Completo o hábito do dia de hoje
+			await prisma.dayHabit.create({
+				data: {
+					day_id: day.id,
+					habit_id: id,
+				},
+			})
+		}
+	})
+}
 
 // Rota que retorna todos os hábitos em tabela
