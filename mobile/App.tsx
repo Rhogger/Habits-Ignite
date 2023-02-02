@@ -41,7 +41,11 @@ export default function App() {
 		<>
 			<Home />
 			{/* A StatusBar agora tem seu conteúdo como preto (dark) devido a prop barStyle, o background da StatusBar é transparente e a prop translucent faz com que a StatusBar fique amostra na aplicação e flutuando sobre ela.   */}
-			<StatusBar barStyle="light-content" backgroundColor="transparent" translucent />
+			<StatusBar
+				barStyle="light-content"
+				backgroundColor="transparent"
+				translucent
+			/>
 		</>
 	)
 }

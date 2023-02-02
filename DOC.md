@@ -1043,7 +1043,10 @@ import { Plus } from 'phosphor-react'
 > Depois é só usá-lo como componente:
 
 ```tsx
-<Plus size={20} className="text-violet-500" />
+<Plus
+	size={20}
+	className="text-violet-500"
+/>
 ```
 
 <div align="center">
@@ -1237,7 +1240,11 @@ import {} from '@expo/vector-icons'
 > (biblioteca) que você importou:
 
 ```tsx
-<Feather name="plus" color="white" size={20} />
+<Feather
+	name="plus"
+	color="white"
+	size={20}
+/>
 ```
 
 > Onde **`name`** é o nome do ícone que você consegue buscar entre as várias bibliotecas de ícones
@@ -1830,7 +1837,9 @@ npm i -g expo-cli
 - FastifyInstance
 - SQLite
 - SQL RAW
-- EPOCH Unix Timestemp -->
+- EPOCH Unix Timestemp
+- Radix
+-->
 
 <!-- Links úteis:
 - Async / await : https://www.alura.com.br/artigos/async-await-no-javascript-o-que-e-e-quando-usar?gclid=Cj0KCQiAw8OeBhCeARIsAGxWtUzlETfyVC2fz0onBK8HzW8ePrntJtBgFy6BmUdbbkoftP-BWmjjC1kaAvG7EALw_wcB -->

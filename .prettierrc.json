@@ -11,5 +11,6 @@
 	"bracketSameLine": true,
 	"jsxBracketSameLine": true,
 	"arrowParens": "always",
-	"proseWrap": "always"
+	"proseWrap": "always",
+	"singleAttributePerLine": true
 }
