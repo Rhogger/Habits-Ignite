@@ -1827,7 +1827,10 @@ npm i -g expo-cli
 
 <!-- ## Pesquisar sobre:
 
-- FastifyInstance -->
+- FastifyInstance
+- SQLite
+- SQL RAW
+ -->
 
 <!-- Links úteis:
 - Async / await : https://www.alura.com.br/artigos/async-await-no-javascript-o-que-e-e-quando-usar?gclid=Cj0KCQiAw8OeBhCeARIsAGxWtUzlETfyVC2fz0onBK8HzW8ePrntJtBgFy6BmUdbbkoftP-BWmjjC1kaAvG7EALw_wcB -->

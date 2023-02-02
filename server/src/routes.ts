@@ -5,6 +5,7 @@ import { prisma } from './lib/prisma'
 
 // Função que contém todas as rotas do app
 export async function appRoutes(app: FastifyInstance) {
+	// Rota para criar um hábito
 	app.post('/habits', async (request) => {
 		const createHabitBody = z.object({
 			// Para fazer a propriedade ser obrigatória, definimos apenas o tipo
@@ -87,7 +88,7 @@ export async function appRoutes(app: FastifyInstance) {
 			},
 		})
 
-		// Varável que recebe o dia em que o hábito foi completado, caso não existir (null) (? verifica se é nulo), ele retorna os id's dos hábitos que foram completados na model dayHabits
+		// Variável que recebe o dia em que o hábito foi completado, caso não existir (null) (? verifica se é nulo), ele retorna os id's dos hábitos que foram completados na model dayHabits
 		const completedHabits = day?.dayHabits.map((dayHabit) => {
 			return dayHabit.habit_id
 		})
@@ -155,6 +156,22 @@ export async function appRoutes(app: FastifyInstance) {
 			})
 		}
 	})
-}
 
-// Rota que retorna todos os hábitos em tabela
+	// Rota que retorna todos os hábitos em tabela
+	app.get('/summary', async () => {
+		const summary = await prisma.$queryRaw`
+			SELECT 
+				D.id, 
+				D.date,
+				(
+					SELECT 
+						cast(count(*) as float)
+					FROM day_habits DH
+					WHERE DH.day_id = D.id
+				) as completed
+			FROM days D
+		`
+
+		return summary
+	})
+}

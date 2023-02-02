@@ -52,7 +52,7 @@ model HabitWeekDays {
   @@map("habit_week_days")
 }
 
-// Tabela que irá guardar os dias, SOEMNTE quando completado algum hábito
+// Tabela que irá guardar os dias, SOMENTE quando completado algum hábito
 model Day {
   id   String   @id @default(uuid())
   date DateTime
