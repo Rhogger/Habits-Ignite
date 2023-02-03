@@ -32,7 +32,13 @@ export function SummaryTable() {
 				{/* Percorre esse Array, para que em cada data, retornar um HabitDay (quadradinhos) */}
 				{summaryDates.map((date) => {
 					// A Key não aceita formato DateTime, logo transformamos em String
-					return <HabitDay key={date.toString()} />
+					return (
+						<HabitDay
+							key={date.toString()}
+							amount={5}
+							completed={Math.round(Math.random() * 5)}
+						/>
+					)
 				})}
 				{/* Verifico se os dias restantes para preencher a tabela de dias é maior que 0, porque se for, ele cria um HabitDay sem interação (placeholder) 
 				
