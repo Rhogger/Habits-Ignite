@@ -15,8 +15,7 @@ import {
 // Components
 import { Loading } from './src/components/Loading'
 
-// Screens
-import { Home } from './src/screens/Home'
+import { Routes } from './src/routes'
 
 // Essa função é a nossa aplicação
 export default function App() {
@@ -39,7 +38,7 @@ export default function App() {
 		// A View possui a prop "style" que recebe Objetos
 		// <> é o Framgment, serve para encapsular elementos, usamos isso aqui pois o Native só pode retornar um elemento, aí usamos do Fragment para agrupar tudo e retornar ele mesmo
 		<>
-			<Home />
+			<Routes />
 			{/* A StatusBar agora tem seu conteúdo como preto (dark) devido a prop barStyle, o background da StatusBar é transparente e a prop translucent faz com que a StatusBar fique amostra na aplicação e flutuando sobre ela.   */}
 			<StatusBar
 				barStyle="light-content"
