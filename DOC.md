@@ -58,6 +58,8 @@ Abaixo, os tópicos da documentação:
     - [Componentes (Components)](#react_componentes)
     - [Propriedades (Props)](#react_propriedades)
     - [Estado (State)](#react_estado)
+    - [Exemplos de uso](#react_exemplo)
+      - [Progress Bar sem Lib](#react_progressbar_sem_lib)
   - [Zod](#zod)
     - [O que é?](#zod_sobre)
     - [Características](#zod_caracteristicas)
@@ -87,12 +89,22 @@ Abaixo, os tópicos da documentação:
     - [O que é?](#vector_sobre)
     - [Importação](#vector_importacao)
     - [Como usar?](#vector_como_usar)
-  - [](#)
-    - [](#)
-    - [](#)
-    - [](#)
-    - [](#)
-    - [](#)
+  - [Radix UI](#radix)
+    - [O que é?](#radix_sobre)
+    - [Características](#radix_caracteristicas)
+    - [Instalação](#radix_instalacao)
+    - [Importação](#radix_importacao)
+    - [Como usar?](#radix_como_usar)
+  - [CLSX](#clsx)
+    - [O que é?](#clsx_sobre)
+    - [Instalação](#clsx_instalacao)
+    - [Importação](#clsx_importacao)
+    - [Exemplo de uso](#clsx_exemplo)
+  - [React Navigation](#react_navigation)
+    - [O que é?](#react_navigation_sobre)
+    - [Características](#react_navigation_caracteristicas)
+    - [Instalação](#react_navigation_instalacao)
+    - [Importação](#react_navigation_importacao)
 - [Object-Relational Mapping (ORM)](#orm)
   - [Prisma](#prisma)
     - [O que é?](#prisma_sobre)
@@ -864,6 +876,35 @@ export default App
 
 <br><hr><br>
 
+</div>
+
+### Exemplos de uso <a name = "react_exemplo"></a>
+
+> Aqui será registrado algumas coisas que criamos usando o React.
+
+<br>
+
+<div align="center">
+
+#### **Progress Bar sem Lib** <a name = "react_progressbar_sem_lib"></a>
+
+</div>
+
+```tsx
+<div
+	role="progressbar"
+	aria-label="Progresso de hábitos completados nesse dia"
+	aria-valuemin={0}
+	aria-valuemax={100}
+	aria-valuenow={75}
+	className="h-3 rounded-xl bg-violet-600 w-3/4"
+/>
+```
+
+<div align="center">
+
+<br><hr><br>
+
 ### Mais sobre [React](https://reactjs.org)...
 
 <br><hr><br><br>
@@ -1251,6 +1292,314 @@ import {} from '@expo/vector-icons'
 > nesse [**`site`**](https://oblador.github.io/react-native-vector-icons/).
 
 <br><hr><br>
+
+<div align="center">
+
+## Radix UI <a name = "radix"></a>
+
+</div>
+
+<br>
+
+### O que é? <a name = "radix_sobre"></a>
+
+> Radix Primitives é uma biblioteca de componentes de interface do usuário de baixo nível com foco
+> em acessibilidade, personalização e experiência do desenvolvedor. Você pode usar esses componentes
+> como a camada base do seu sistema de design ou adotá-los de forma incremental.
+
+<br>
+
+### Características <a name = "radix_caracteristicas"></a>
+
+<br>
+
+<div align="center">
+
+#### **Acessível**
+
+</div>
+
+> Os componentes aderem aos padrões de design WAI-ARIA sempre que possível. Lidamos com muitos dos
+> detalhes difíceis de implementação relacionados à acessibilidade, incluindo atributos de ária e
+> função, gerenciamento de foco e navegação pelo teclado.
+
+<br>
+
+<div align="center">
+
+#### **Sem estilo**
+
+</div>
+
+> Os componentes são fornecidos com zero estilos, dando a você controle total sobre o estilo. Os
+> componentes podem ser estilizados com qualquer solução de estilo (CSS vanilla, pré-processadores
+> CSS, bibliotecas CSS-in-JS).
+
+<br>
+
+<div align="center">
+
+#### **Aberto**
+
+</div>
+
+> Radix Primitives são projetados para serem personalizados para atender às suas necessidades. Nossa
+> arquitetura de componentes abertos fornece acesso granular a cada parte do componente, para que
+> você possa envolvê-los e adicionar seus próprios event listeners, props, ou refs.
+
+<br>
+
+<div align="center">
+
+#### **Descontrolado**
+
+</div>
+
+> Quando aplicável, os componentes não são controlados por padrão, mas também podem ser controlados
+> alternativamente. Toda a fiação de comportamento é tratada internamente, para que você possa
+> começar a operar da maneira mais tranquila possível, sem a necessidade de criar nenhum estado
+> local.
+
+<br>
+
+<div align="center">
+
+#### **Experiência do desenvolvedor**
+
+</div>
+
+> Um de nossos principais objetivos é fornecer a melhor experiência possível ao desenvolvedor. Radix
+> Primitives fornece uma API totalmente tipada. Todos os componentes compartilham uma API
+> semelhante, criando uma experiência consistente e previsível. Também implementamos uma propriedade
+> asChild, dando aos usuários controle total sobre o elemento renderizado.
+
+<br>
+
+<div align="center">
+
+#### **Adoção incremental**
+
+</div>
+
+> Cada primitivo pode ser instalado individualmente para que você possa adotá-los de forma
+> incremental.
+
+```
+npm install @radix-ui/react-dialog
+npm install @radix-ui/react-dropdown-menu
+npm install @radix-ui/react-tooltip
+```
+
+> Primitivos também são versionados de forma independente, para facilitar ainda mais a adoção
+> incremental.
+
+<br>
+
+### Instalação <a name = "radix_instalacao"></a>
+
+> Primeiro você escolhe qual dos componentes você vai querer, aí na documentação você obtém o código
+> de instalação e importação, no meu caso, precisava do **`dialog`**:
+
+```
+npm install @radix-ui/react-dialog
+```
+
+<br>
+
+### Importação <a name = "radix_importacao"></a>
+
+> Como na importação ele importa tudo de Dialog, ou seja, todos os outros componentes de Dialog, dá
+> também para importar separadamente, mas nao faz muito sentido utilizar os componentes
+> separadamente, por isso importamos tudo.
+
+```tsx
+import * as Dialog from '@radix-ui/react-dialog'
+```
+
+<br>
+
+### Como usar? <a name = "radix_como_usar"></a>
+
+> Também está na documentação a maneira de usar. Existe toda uma estruturação de componentes a ser
+> feita para que possamos usar o componente certinho.
+
+```tsx
+<Dialog.Root>
+	<Dialog.Trigger
+		type="button"
+		className="border border-violet-500 font-semibold rounded-lg px-6 py-4 flex items-center gap-3 hover:border-violet-300"
+	>
+		<Plus
+			size={20}
+			className="text-violet-500"
+		/>
+		Novo Hábito
+	</Dialog.Trigger>
+
+	<Dialog.Portal>
+		<Dialog.Overlay className="w-screen h-screen bg-black/80 fixed inset-0" />
+		<Dialog.Content className="absolute p-10 bg-zinc-900 rounded-2xl max-w-md w-full top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+			<Dialog.Close className=" absolute right-6 top-6 text-zinc-400 hover:text-zinc-200">
+				<X
+					size={24}
+					aria-label="Fechar"
+				/>
+			</Dialog.Close>
+			<Dialog.Title className="text-3xl leading-tight font-extrabold">Criar Hábito</Dialog.Title>
+
+			<NewHabitForm />
+		</Dialog.Content>
+	</Dialog.Portal>
+</Dialog.Root>
+```
+
+<br><hr><br>
+
+<div align="center">
+
+## CLSX <a name = "clsx"></a>
+
+</div>
+
+<br>
+
+### O que é? <a name = "clsx_sobre"></a>
+
+> Um pequeno utilitário (228B) para construir strings condicionais no className. Também serve como
+> um substituto menor e mais rápido para o módulo classnames.
+
+<br>
+
+### Instalação <a name = "clsx_instalacao"></a>
+
+```
+npm i clsx
+```
+
+<br>
+
+### Importação <a name = "clsx_importacao"></a>
+
+```tsx
+import clsx from 'clsx'
+```
+
+<br>
+
+### Exemplo de uso <a name = "clsx_exemplo"></a>
+
+```tsx
+<Popover.Trigger
+	className={clsx('w-10 h-10 bg-zinc-900 border-2 border-zinc-800 rounded-lg', {
+		'bg-zinc-900 border-zinc-800': completedPercentage === 0,
+		'bg-violet-900 border-violet-700': completedPercentage > 0 && completedPercentage < 20,
+		'bg-violet-800 border-violet-600': completedPercentage >= 20 && completedPercentage < 40,
+		'bg-violet-700 border-violet-500': completedPercentage >= 40 && completedPercentage < 60,
+		'bg-violet-600 border-violet-400': completedPercentage >= 60 && completedPercentage < 80,
+		'bg-violet-500 border-violet-300': completedPercentage >= 80,
+	})}
+/>
+```
+
+<br><hr><br>
+
+<div align="center">
+
+## React Navigation <a name = "react_navigation"></a>
+
+</div>
+
+<br>
+
+### O que é? <a name = "react_navigation_sobre"></a>
+
+> O React Navigation é responsável por resolver uma grande questão de suas aplicações: a navegação.
+> Influenciando na experiência da pessoa usuário e no design do app, a navegação e pode tornar tudo
+> mais fácil ou mais complexo. <br><br> Porém o React Native não apresenta uma solução para o
+> roteamento de forma nativa. Então, o React Navigation é uma possibilidade para realizar isso de
+> forma simples.
+
+<br>
+
+### Características <a name = "react_navigation_caracteristicas"></a>
+
+<div align="center">
+
+**Fácil de usar**
+
+</div>
+
+> Comece rapidamente com navegadores integrados que oferecem uma interface perfeita e pronta para
+> uso experiência.
+
+<br>
+
+<div align="center">
+
+**Componentes criados para iOS e Android**
+
+</div>
+
+> Componentes criados para a aparência específica de dispositivos iOS e Android com animações e
+> gestos suaves.
+
+<br>
+
+<div align="center">
+
+**Completamente personalizável**
+
+</div>
+
+> Se você sabe escrever aplicativos usando JavaScript, pode personalizar qualquer parte do React
+> Navigation.
+
+<br>
+
+<div align="center">
+
+**Plataforma extensível**
+
+</div>
+
+> React Navigation é extensível em todas as camadas - você pode escrever suas próprias navegações ou
+> até mesmo substituir a API voltada para o usuário.
+
+<br>
+
+### Instalação <a name = "react_navigation_instalacao"></a>
+
+> Instalar os pacotes necessários para o projeto:
+
+```
+npm i @react-navigation/native
+```
+
+> E as Dependências de Desenvolvimento:
+
+```
+npm install react-native-screens react-native-safe-area-context
+```
+
+> Onde o **`react-native-screens`** que é para lidar com as navegações e o
+> **`react-native-safe-area-context`** que é para garantir que os elementos sejam renderizados em
+> tela
+
+<br>
+
+> Após selecionar o tipo de navegação que iremos querer, podemos instalar elas:
+
+```
+npm install @react-navigation/native-stack
+```
+
+<br>
+
+### Importação <a name = "react_navigation_importacao"></a>
+
+```
+import {createNativeStackNavigator} from '@react-navigation/native-stack'
+```
 
 <div align="center">
 

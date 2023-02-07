@@ -55,6 +55,8 @@ desenvolvemos um website que faz o controle de hábitos.
 - DayJs
 - Tailwind CSS
 - Phosphor Icon
+- Radix UI
+- CLSX
 
 <br>
 
@@ -68,6 +70,7 @@ desenvolvemos um website que faz o controle de hábitos.
 - React Native SVG
 - React Native SVG Transformer
 - DayJs
+- React Navigation
 
 <br>
 <br>
