@@ -21,7 +21,8 @@ export function SummaryTable() {
 						<div
 							// Interpolação do dia da semana - o index, assim irá resultar em um valor diferente de apenas 'S' ou 'Q', que repetem no array.
 							key={`${weekDays} - ${i}`}
-							className="text-zinc-400 font-bold text-xl h-10 w-10 flex items-center justify-center">
+							className="text-zinc-400 font-bold text-xl h-10 w-10 flex items-center justify-center"
+						>
 							{weekDays}
 						</div>
 					)

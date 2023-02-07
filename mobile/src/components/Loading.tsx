@@ -9,7 +9,8 @@ export function Loading() {
 				justifyContent: 'center',
 				alignItems: 'center',
 				backgroundColor: '#09090A',
-			}}>
+			}}
+		>
 			{/* ActivityIndicator é um Loader e aplicamos uma cor para ele */}
 			<ActivityIndicator color="#7C3AED" />
 		</View>

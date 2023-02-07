@@ -20,7 +20,8 @@ export function Home() {
 					<Text
 						key={`${weekDays} - ${i}`}
 						className="text-zinc-400 text-xl font-bold text-center mx-1"
-						style={{ width: daySize, height: daySize }}>
+						style={{ width: daySize, height: daySize }}
+					>
 						{weekDays}
 					</Text>
 				))}
@@ -28,7 +29,8 @@ export function Home() {
 
 			<ScrollView
 				showsVerticalScrollIndicator={false}
-				contentContainerStyle={{ paddingBottom: 100 }}>
+				contentContainerStyle={{ paddingBottom: 100 }}
+			>
 				<View className="flex-row flex-wrap">
 					{datesFromYearStart.map((date) => (
 						<HabitDay key={date.toISOString()} />

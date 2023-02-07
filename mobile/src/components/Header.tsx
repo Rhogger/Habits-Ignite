@@ -19,7 +19,8 @@ export function Header() {
 			<TouchableOpacity
 				className="flex-row h-11 px-4 border border-violet-500 rounded-lg items-center"
 				activeOpacity={0.7}
-				onPress={() => navigate('new')}>
+				onPress={() => navigate('new')}
+			>
 				<Feather
 					name="plus"
 					color={colors.violet[500]}
