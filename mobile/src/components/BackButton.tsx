@@ -1,6 +1,10 @@
 import { TouchableOpacity } from 'react-native'
-import { Feather } from '@expo/vector-icons'
+
+// Config
 import colors from 'tailwindcss/colors'
+
+// Libs
+import { Feather } from '@expo/vector-icons'
 import { useNavigation } from '@react-navigation/native'
 
 export function BackButton() {
