@@ -1,3 +1,5 @@
+import { useEffect, useState } from 'react'
+import { api } from '../lib/axios'
 import { generateDatesFromYearsBeginning } from '../utils/generate-dates-from-years-beginning'
 import { HabitDay } from './HabitDay'
 
@@ -12,6 +14,14 @@ const minimumSummaryDatesSize = 18 * 7 // 18 semanas
 const amountOfDaysToFill = minimumSummaryDatesSize - summaryDates.length
 
 export function SummaryTable() {
+	const [summary, setSummary] = useState('')
+
+	useEffect(() => {
+		api.get('/summary').then((response) => {
+			console.log(response.data)
+		})
+	}, [])
+
 	return (
 		<div className="w-full flex ">
 			<div className="grid grid-rows-7 grid-flow-row gap-3">
