@@ -1,3 +1,4 @@
+import dayjs from 'dayjs'
 import { useEffect, useState } from 'react'
 import { api } from '../lib/axios'
 import { generateDatesFromYearsBeginning } from '../utils/generate-dates-from-years-beginning'
@@ -13,12 +14,19 @@ const minimumSummaryDatesSize = 18 * 7 // 18 semanas
 // Variável responsável pelo cálculo dos quadradinhos que já foram disponíbilizados para uso e dos que irão disponibilizar
 const amountOfDaysToFill = minimumSummaryDatesSize - summaryDates.length
 
+type Summary = {
+	id: string
+	date: string
+	amount: number
+	completed: number
+}[]
+
 export function SummaryTable() {
-	const [summary, setSummary] = useState('')
+	const [summary, setSummary] = useState<Summary>([])
 
 	useEffect(() => {
 		api.get('/summary').then((response) => {
-			console.log(response.data)
+			setSummary(response.data)
 		})
 	}, [])
 
@@ -42,12 +50,18 @@ export function SummaryTable() {
 			<div className="grid grid-rows-7 grid-flow-col gap-3">
 				{/* Percorre esse Array, para que em cada data, retornar um HabitDay (quadradinhos) */}
 				{summaryDates.map((date) => {
+					const dayInSummary = summary.find((day) => {
+						return dayjs(date).isSame(day.date, 'day')
+					})
+
 					// A Key não aceita formato DateTime, logo transformamos em String
 					return (
 						<HabitDay
 							key={date.toString()}
-							amount={5}
-							completed={Math.round(Math.random() * 5)}
+							date={date}
+							amount={dayInSummary?.amount}
+							// completed={Math.round(Math.random() * 5)}
+							completed={dayInSummary?.completed}
 						/>
 					)
 				})}

@@ -1,5 +1,7 @@
 // Importando o CSS
 import './styles/global.css'
+
+import './lib/dayjs'
 // Importando o componente Habit da pasta 'components'
 // import { Habit } from './components/Habit'
 
