@@ -40,10 +40,10 @@ export function Home() {
 		try {
 			setLoading(true)
 			const response = await api.get('/summary')
-			console.log(response.data)
 			setSummary(response.data)
+			console.log(response.data)
 		} catch (error) {
-			Alert.alert('Ops', 'Não foi possível carregar o sumário de hábitos"')
+			Alert.alert('Ops', 'Não foi possível carregar o sumário de hábitos.')
 			console.log(error)
 		} finally {
 			setLoading(false)
@@ -54,7 +54,7 @@ export function Home() {
 		fetchData()
 	}, [])
 
-	if (!loading) {
+	if (loading) {
 		return <Loading />
 	}
 
