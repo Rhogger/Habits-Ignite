@@ -38,7 +38,7 @@ export function HabitDay({ amountOfHabits = 0, amountCompleted = 0, date, ...res
 				['bg-violet-600 border-violet-400']:
 					amountAccomplishedPercentage >= 60 && amountAccomplishedPercentage < 80,
 				['bg-violet-500 border-violet-300']: amountAccomplishedPercentage >= 80,
-				['border-white border-3']: isCurrentDay,
+				['border-zinc-50 border-3']: isCurrentDay,
 			})}
 			style={{ width: daySize, height: daySize }}
 			activeOpacity={0.7}

@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { ScrollView, View, Text, TextInput, TouchableOpacity } from 'react-native'
+import { ScrollView, View, Text, TextInput, TouchableOpacity, Alert } from 'react-native'
 
 // Config
 import colors from 'tailwindcss/colors'
@@ -10,6 +10,7 @@ import { Checkbox } from '../components/Checkbox'
 
 // Libs
 import { Feather } from '@expo/vector-icons'
+import { api } from '../lib/axios'
 
 const avaiableWeekDays = [
 	'Domingo',
@@ -22,6 +23,8 @@ const avaiableWeekDays = [
 ]
 
 export function New() {
+	const [title, setTitle] = useState('')
+
 	// Estado do tipo vetores de Números
 	// weekDays é o nome do Estado
 	// setWeekDays é a alteração do Estado
@@ -35,6 +38,24 @@ export function New() {
 			// Marcar
 		} else {
 			setWeekDays((prevState) => [...prevState, weekDayIndex])
+		}
+	}
+
+	async function handleCreateNewHabit() {
+		try {
+			if (!title.trim() || weekDays.length === 0) {
+				Alert.alert('Novo Hábito', 'Informe o nome do hábito e selecione a sua recorrência.')
+			}
+
+			await api.post('/habits', { title, weekDays })
+
+			setTitle('')
+			setWeekDays([])
+
+			Alert.alert('Novo Hábito', 'Hábito criado com sucesso!')
+		} catch (error) {
+			console.log(error)
+			Alert.alert('Ops', 'Não foi possível criar o novo hábito.')
 		}
 	}
 
@@ -54,6 +75,8 @@ export function New() {
 					className="h-12 pl-4 rounded-lg mt-3 bg-zinc-900 text-white border-2 border-zinc-800 focus:border-green-600"
 					placeholder="Ex.: Exercícios, dormir bem, etc..."
 					placeholderTextColor={colors.zinc[400]}
+					onChangeText={setTitle}
+					value={title}
 				/>
 
 				<Text className="font-semibold mt-4 mb-3 text-white text-base">Qual a recorrência?</Text>
@@ -70,6 +93,7 @@ export function New() {
 				<TouchableOpacity
 					className="w-full h-14 flex-row items-center justify-center bg-green-600 rounded-md mt-6"
 					activeOpacity={0.7}
+					onPress={handleCreateNewHabit}
 				>
 					<Feather
 						name="check"
