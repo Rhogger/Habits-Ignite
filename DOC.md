@@ -1823,8 +1823,6 @@ CREATE TABLE "habits" (
 
 <br>
 
-<!-- TODO: Fazer exemplo de seed -->
-
 > Para montar um seeding, temos aqui a estrutura base dele:
 
 ```ts

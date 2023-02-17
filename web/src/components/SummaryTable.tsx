@@ -49,22 +49,22 @@ export function SummaryTable() {
 
 			<div className="grid grid-rows-7 grid-flow-col gap-3">
 				{/* Percorre esse Array, para que em cada data, retornar um HabitDay (quadradinhos) */}
-				{summaryDates.map((date) => {
-					const dayInSummary = summary.find((day) => {
-						return dayjs(date).isSame(day.date, 'day')
-					})
+				{summary.length > 0 &&
+					summaryDates.map((date) => {
+						const dayInSummary = summary.find((day) => {
+							return dayjs(date).isSame(day.date, 'day')
+						})
 
-					// A Key não aceita formato DateTime, logo transformamos em String
-					return (
-						<HabitDay
-							key={date.toString()}
-							date={date}
-							amount={dayInSummary?.amount}
-							// completed={Math.round(Math.random() * 5)}
-							completed={dayInSummary?.completed}
-						/>
-					)
-				})}
+						// A Key não aceita formato DateTime, logo transformamos em String
+						return (
+							<HabitDay
+								key={date.toString()}
+								date={date}
+								amount={dayInSummary?.amount}
+								defaultCompleted={dayInSummary?.completed}
+							/>
+						)
+					})}
 				{/* Verifico se os dias restantes para preencher a tabela de dias é maior que 0, porque se for, ele cria um HabitDay sem interação (placeholder) 
 				
 				Esse método Array.from() cria um array com um tamanho predefinido, que no caso é os dias que estão por vir (placeholders)
