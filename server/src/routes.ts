@@ -89,9 +89,10 @@ export async function appRoutes(app: FastifyInstance) {
 		})
 
 		// Variável que recebe o dia em que o hábito foi completado, caso não existir (null) (? verifica se é nulo), ele retorna os id's dos hábitos que foram completados na model dayHabits
-		const completedHabits = day?.dayHabits.map((dayHabit) => {
-			return dayHabit.habit_id
-		})
+		const completedHabits =
+			day?.dayHabits.map((dayHabit) => {
+				return dayHabit.habit_id
+			}) ?? []
 
 		return {
 			possibleHabits,
