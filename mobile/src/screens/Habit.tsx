@@ -11,6 +11,8 @@ import dayjs from 'dayjs'
 import { useEffect, useState } from 'react'
 import { api } from '../lib/axios'
 import { Loading } from '../components/Loading'
+import { HabitsEmpty } from '../components/HabitsEmpty'
+import { generateProgressPercentage } from '../utils/generate-progress-percentage'
 
 interface Params {
 	date: string
@@ -37,13 +39,17 @@ export function Habit() {
 	const dayOfWeek = parsedDate.format('dddd')
 	const dayAndMonth = parsedDate.format('DD/MM')
 
+	const habitsProgress = dayInfo?.possibleHabits.length
+		? generateProgressPercentage(dayInfo.possibleHabits.length, completedHabits.length)
+		: 0
+
 	async function fetchHabits() {
 		try {
 			setLoading(true)
+
 			const response = await api.get('/day', { params: { date } })
 			setDayInfo(response.data)
 			setCompletedHabits(response.data.completedHabits)
-			console.log(response.data)
 		} catch (error) {
 			Alert.alert('Ops', 'Não foi possível carregar as informações do hábito!')
 			console.log(error)
@@ -80,10 +86,10 @@ export function Habit() {
 
 				<Text className="text-white font-extrabold text-3xl">{dayAndMonth}</Text>
 
-				<ProgressBar progress={30} />
+				<ProgressBar progress={habitsProgress} />
 
 				<View className="mt-6">
-					{dayInfo?.possibleHabits &&
+					{dayInfo?.possibleHabits ? (
 						dayInfo.possibleHabits.map((habit) => (
 							<Checkbox
 								key={habit.id}
@@ -91,7 +97,10 @@ export function Habit() {
 								onPress={() => handleToggleHabit(habit.id)}
 								checked={completedHabits.includes(habit.id)}
 							/>
-						))}
+						))
+					) : (
+						<HabitsEmpty />
+					)}
 				</View>
 			</ScrollView>
 		</View>
