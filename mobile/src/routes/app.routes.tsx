@@ -17,13 +17,13 @@ export function AppRoutes() {
 			/>
 
 			<Screen
-				name="habit"
-				component={Habit}
+				name="new"
+				component={New}
 			/>
 
 			<Screen
-				name="new"
-				component={New}
+				name="habit"
+				component={Habit}
 			/>
 		</Navigator>
 	)

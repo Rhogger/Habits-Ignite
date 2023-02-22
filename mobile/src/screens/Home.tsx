@@ -6,11 +6,7 @@ import { HabitDay, daySize } from '../components/HabitDay'
 import { Header } from '../components/Header'
 import { Loading } from '../components/Loading'
 
-// Config
-import colors from 'tailwindcss/colors'
-
 // Libs
-import { Feather } from '@expo/vector-icons'
 import { useNavigation } from '@react-navigation/native'
 
 // Utils
