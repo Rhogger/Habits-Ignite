@@ -1,18 +1,29 @@
+# Todas as pastas
 **/node_modules
 **/.expo
 **/migrations
-server/.env
 **/.prettierrc.json
+**/.vscode
+
+# Pasta root
+package.json
+package-lock.json
 DOC2.md
+
+#Pasta com nome:
 dist/
+web-build/
+
+#Arquivos com nome:
 npm-debug.*
+
+#Extensões de arquivos
 *.jks
 *.p8
 *.p12
 *.key
 *.mobileprovision
 *.orig.*
-web-build/
 
 # macOS
 .DS_Store

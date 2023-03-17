@@ -2,7 +2,7 @@
 import './src/lib/dayjs'
 
 // Importando algumas APIs e Components que o React Native irá usar na aplicação
-import { StatusBar } from 'react-native'
+import { StatusBar, Button } from 'react-native'
 // Importando as fontes da API
 import {
 	useFonts,
@@ -12,10 +12,20 @@ import {
 	Inter_800ExtraBold,
 } from '@expo-google-fonts/inter'
 
+import * as Notifications from 'expo-notifications'
+
 // Components
 import { Loading } from './src/components/Loading'
 
 import { Routes } from './src/routes'
+
+Notifications.setNotificationHandler({
+	handleNotification: async () => ({
+		shouldShowAlert: true,
+		shouldPlaySound: false,
+		shouldSetBadge: false,
+	}),
+})
 
 // Essa função é a nossa aplicação
 export default function App() {
@@ -28,6 +38,25 @@ export default function App() {
 		Inter_700Bold,
 		Inter_800ExtraBold,
 	})
+
+	async function scheduleNotification() {
+		const trigger = new Date(Date.now())
+
+		trigger.setMinutes(trigger.getMinutes() + 1)
+
+		await Notifications.scheduleNotificationAsync({
+			content: {
+				title: 'Tomaaaa notificação 😎',
+				body: 'Eu sou o Nal, Nal do Canal',
+			},
+			trigger,
+		})
+	}
+
+	async function getScheduleNotification() {
+		const schedules = await Notifications.getAllScheduledNotificationsAsync()
+		console.log(schedules)
+	}
 
 	// Se as fontes não forem carregadas, é retornado o componente Loading, que é o Loader do React Native
 	if (!fontsLoaded) {

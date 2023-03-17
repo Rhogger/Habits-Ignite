@@ -3,6 +3,7 @@ import Fastify from 'fastify'
 import cors from '@fastify/cors'
 // Importação das rotas
 import { appRoutes } from './routes'
+import { notificationRoutes } from './notifications-routes'
 
 // Cria a aplicação executando a função Fastify()
 const app = Fastify()
@@ -13,6 +14,8 @@ app.register(cors)
 
 // Cria a integração com rotas
 app.register(appRoutes)
+
+app.register(notificationRoutes)
 
 // Faz com que nossa aplicação se conecte através da porta passada por parâmetro (3333)
 // O .then() faz com que execute aquela mensagem enquanto o servidor está sendo executado.
