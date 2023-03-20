@@ -34,14 +34,14 @@ export async function notificationRoutes(app: FastifyInstance) {
 
 		const { subscription } = sendPushBody.parse(request.body)
 		//FIXME: Essa string deve ser inserido no método abaixo como 2° parametro.
-		// const payload = 'Notificação Teste'
+		const payload = 'Notificação Teste'
 
-		// try {
-		// 	const teste = await WebPush.sendNotification(subscription)
-		// 	console.log(teste.statusCode)
-		// 	reply.status(201).send()
-		// } catch (error) {
-		// 	reply.status(500).send({ error: 'Internal Server Error' })
-		// }
+		try {
+			const teste = await WebPush.sendNotification(subscription)
+			console.log(teste.statusCode)
+			reply.status(201).send()
+		} catch (error) {
+			reply.status(500).send({ error: 'Internal Server Error' })
+		}
 	})
 }

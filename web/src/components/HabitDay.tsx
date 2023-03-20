@@ -12,11 +12,12 @@ import { useState } from 'react'
 interface HabitDayProps {
 	date: Date
 	defaultCompleted?: number
-	amount?: number
+	defaultAmount?: number
 }
 
-export function HabitDay({ defaultCompleted = 0, amount = 0, date }: HabitDayProps) {
+export function HabitDay({ defaultCompleted = 0, defaultAmount = 0, date }: HabitDayProps) {
 	const [completed, setCompleted] = useState(defaultCompleted)
+	const [amount, setAmount] = useState(defaultAmount)
 
 	const completedPercentage = amount > 0 ? Math.round((completed / amount) * 100) : 0
 
@@ -54,6 +55,7 @@ export function HabitDay({ defaultCompleted = 0, amount = 0, date }: HabitDayPro
 
 					<HabitsList
 						date={date}
+						setAmount={setAmount}
 						onCompletedChanged={handleCompletedChanged}
 					/>
 
