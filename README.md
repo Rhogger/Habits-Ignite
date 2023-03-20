@@ -37,40 +37,46 @@ desenvolvemos um website que faz o controle de hábitos.
 
 ### &nbsp;&nbsp;&nbsp;&nbsp; Back-End
 
-- Node.JS
-- TypeScript
-- Fastify
-- Prisma
-- SQLite
-- Zod
-- DayJs
+- **Node.JS**
+- **TypeScript**
+- **Fastify** - Lidar com requisições HTTP. (api RESTFUL)
+- **CORS** - Libera acesso à API
+- **Prisma** - ORM
+- **SQLite** - Banco de dados local que grava em disco
+- **Zod** - Lib para declarar e validar tipagem de dados
+- **DayJs** - Lib para trabalhar com datas
 
 <br>
 
 ### &nbsp;&nbsp;&nbsp;&nbsp; Front-End
 
-- Vite
-- TypeScript
-- React JS
-- DayJs
-- Tailwind CSS
-- Phosphor Icon
-- Radix UI
-- CLSX
+- **TypeScript**
+- **React JS**
+- **Tailwind CSS** - Framework CSS para estilização em classes
+- **Vite** - Ferramenta para gerar estrutura de código para front-end
+- **DayJs** - Lib para trabalhar com datas
+- **Phosphor Icon** - Lib do React com ícones componentizados
+- **Radix UI** - Lib de componentes sem qualquer estilização com foco em acessibilidade
+- **CLSX** - Lib para adicionar condições em classes CSS
+- **Axios** - Lib para acessar API
+- **PushManager API** - API experimental do Google para fazer Push Notifications
 
 <br>
 
 ### &nbsp;&nbsp;&nbsp;&nbsp; Mobile
 
-- TypeScript
-- React Native
-- Expo
-- NativeWind
-- Vector Icons
-- React Native SVG
-- React Native SVG Transformer
-- DayJs
-- React Navigation
+- **TypeScript**
+- **React Native**
+- **Expo** - Framework utilizado no desenvolvimento Mobile com React Native
+- **NativeWind** - Lib para usar o Tailwind CSS no React Native
+- **Vector Icons** - Lib do React com ícones componentizados
+- **React Native SVG** - Lib para lidar com svg no React Native
+- **React Native SVG Transformer** - Lib para usar svg como componente
+- **React Navigation** - Lib para navegação de telas
+- **React Native Reanimated** - Lib para animações
+- **DayJs** - Lib para trabalhar com datas
+- **Axios** - Lib para acessar API
+- **Expo Notifications** - Lib para fazer Push Notifications no Mobile
 
 <br>
 <br>
@@ -79,6 +85,27 @@ desenvolvemos um website que faz o controle de hábitos.
 
 Tudo o que eu estou aprendendo durante esse projeto estou documentando aqui no aquivo
 [DOC.md](DOC.md).
+
+A documentação encontra-se incompleta, mas 50% do projeto está documentado nela, sendo o principal
+foco na documentação, as ferramentas que utilizei no projeto. Pretendo finalizar a documentação
+algum dia.
+
+<br>
+<br>
+
+## ✨ Futuras Implementações <a name = "aprendizado"></a>
+
+- Autenticação
+  - Migrar o banco para PostgresSQL
+  - Login com Google
+- Troca de temas
+- Opções de hábitos específicos
+  - Opção de excluir um hábito
+  - De x em x dias
+  - De semana x faço os hábitos, semana y não
+  - De selecionar um prazo para o fim do hábito
+- Responsividade para a página Web
+- Deploy da aplicação e divulgação do App nas Lojas de Aplicativos
 
 <br>
 <br>
