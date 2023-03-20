@@ -4,8 +4,8 @@
 
 [Projeto](#projeto) &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; [Tecnologias](#tecnologias)
 &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; [Aprendizado](#aprendizado)
-&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; [Layout](#layout) &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-[Licença](#license)
+&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; [TODO List](#TODO) &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+[Layout](#layout) &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; [Licença](#license)
 
 </div>
 
@@ -93,7 +93,7 @@ algum dia.
 <br>
 <br>
 
-## ✨ Futuras Implementações <a name = "aprendizado"></a>
+## ✨ Futuras Implementações <a name = "TODO"></a>
 
 - Autenticação
   - Migrar o banco para PostgresSQL
